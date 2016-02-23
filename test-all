@@ -1,2 +1,15 @@
+set -o errexit
+
+source ~/.zshrc.local
+
+# characterization test
+wiki_commit echo > actual
+diff -u <(cat << \"
+cd /Users/andrea/Dropbox/wiki
+git commit -am .
+"
+) actual
+
+# test math 1+1 == 2
 echo "1+1" | bc > actual
 diff -u <(echo "2") actual
