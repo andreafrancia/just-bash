@@ -1,0 +1,2 @@
+echo "1+1" | bc > actual
+diff -u <(echo "2") actual
