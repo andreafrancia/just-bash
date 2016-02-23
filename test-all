@@ -2,7 +2,15 @@ set -o errexit
 
 source ~/.zshrc.local
 
-# characterization test
+# quando però gli passo il messaggio usa quello per fare commmit
+wiki_commit "Messaggio" echo > actual
+diff -u <(cat << \"
+cd /Users/andrea/Dropbox/wiki
+git commit -am "Messaggio"
+"
+) actual
+
+# quando non gli passo niente, a parte (echo), il messaggio di commit è "."
 wiki_commit echo > actual
 diff -u <(cat << \"
 cd /Users/andrea/Dropbox/wiki
