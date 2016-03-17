@@ -23,7 +23,9 @@ Vagrant.configure(2) do |config|
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-
+  
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
@@ -67,5 +69,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
     sudo apt-get install -y vim-nox
+    sudo apt-get install -y openjdk-7-jdk
+    sudo apt-get install -y tomcat7
+    sudo apt-get install -y elinks
+    sudo apt-get install -y tomcat7-examples
+    sudo service tomcat7 restart
   SHELL
 end

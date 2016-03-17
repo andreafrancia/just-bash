@@ -1,4 +1,6 @@
-  sudo apt-get update
-  sudo apt-get install openjdk-7-jdk -y
-  sudo apt-get install tomcat7  -y
-  sudo service tomcat7 restart
+  
+  elinks http://localhost:8080/ # test se funziona
+  
+vagrant@precise32:~$ cat /etc/tomcat7/Catalina/localhost/examples.xml
+<Context path="/examples"
+	docBase="/usr/share/tomcat7-examples/examples" />
