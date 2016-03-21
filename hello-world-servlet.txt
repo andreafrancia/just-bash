@@ -22,10 +22,16 @@ Regole:
   - (rule) la TODO list parte con pochi (o anche un punto) che è l'acceptance test finale
   - (rule) l'obiettivo è creare uno script di deploy in grado di deployare una stupida servlet
   - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
+  - (requisiti extra) deployare una specifica versione
   - (requisiti extra) la servlet per funzionare richiede MySQL
   - (requisiti extra) la servlet che richiede il Sun di Oracle
   - (requisiti extra) per testare la servlet bisogna fare una fixture sul database
   - (requisiti extra) la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
+  - (spiego) trucco del cd tra parentesi
+  - (spiego) l'idempotenza prevista: mkdir -> mkdir -p
+  - (spiego) l'idempotenza con sonda: nginx --version || apt-get install nginx -y
+  - (spiego) l'idempotenza con sovrascrittura: ln -s -> ln -sf
+  - (spiego) l'idempotenza con preparazione: ln -s -> rm -f target && ln -s source target
 
 Notes:
 
@@ -37,8 +43,15 @@ Notes:
     - ssh default 'mkdir -p repo.git && cd repo.git && git init --bare'
   - how to create the working copy (non idempotent)
     - git clone repo.git/ working-copy
-  - create a working copy idempotent
-    - mkdir -p working-copy && git init
+  - idempotent create a working copy
+    - mkdir -p working-copy && (
+      cd working-copy && 
+      git init && 
+      ( git remote rm origin || true ) && 
+      git remote add -f origin ../repo.git && 
+      git fetch -u origin master &&
+      git checkout master
+      )
   - tomcat has been downloaded from here:  
     - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
   - tomcat directories:
@@ -78,7 +91,6 @@ TODO:
 - data dir:
   - vagrant ssh -c "ls /vagrant"
 - don't update all the times
-
 - deployare tomcat
 - deployare la servlet
 - tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
