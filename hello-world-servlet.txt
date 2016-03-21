@@ -1,20 +1,18 @@
 Specifiche:
 
-  - TODO deploy should install the servlet:
-    - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
-    - -> 200 not 404
-  - TODO should copy the class file:
-    - ssh default 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
-  - DONE sono in grado di copiare un file su Vagrant:
-    - rsync Vagrantfile default:
-  - DONE accedere alla vagrant usando ssh pulito
-    - vagrant ssh-config >> ~/.ssh/config
-  - DONE there is a single command for deploy
-    - script/deploy
-  - DONE we should be able to compile the servlet:
-    - javac -cp lib/servlet-api.jar example/HelloWorld.java
-  - DONE we should have a tomcat version:
-    - ls downloads/apache-tomcat-7.0.68.tar.gz
+Pushare 
+
+- TODO deploy should install the servlet:
+  - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
+  - -> 200 not 404
+- TODO should copy the class file:
+  - ssh default 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
+- PASS there is a single command for deploy
+  - script/deploy
+- PASS we should be able to compile the servlet:
+  - javac -cp lib/servlet-api.jar example/HelloWorld.java
+- PASS we should have a tomcat version:
+  - ls downloads/apache-tomcat-7.0.68.tar.gz
 
 Regole:
 
@@ -31,6 +29,12 @@ Regole:
 
 Notes:
 
+  - pushare il repository sulla macchina:
+    - git push ssh://vagrant@default/home/vagrant/repo.git HEAD
+  - how to install git:
+    - git --version || sudo apt-get install git-core -y
+  - how to create a bare repository:
+    - mkdir -p repo.git && cd repo.git && git init --bare
   - tomcat has been downloaded from here:  
     - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
   - tomcat directories:
@@ -49,6 +53,10 @@ Notes:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
   - alias pazzia:
     - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
+  - accedere alla vagrant usando ssh pulito:
+    - vagrant ssh-config >> ~/.ssh/config
+  - copiare un file usando rsync over SSH:
+    - rsync Vagrantfile default:
   - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
 
 TODO:
@@ -57,7 +65,6 @@ TODO:
   - definire cosa intendo quando dico che lo "script crasha"
   - aggiungere linea di comando che mette l'exit code nel PROMPT
   - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
-  - 
   
 - deploy della servlet:
   cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
