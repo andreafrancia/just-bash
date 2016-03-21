@@ -32,6 +32,10 @@ Notes:
     - /usr/share/tomcat7/lib (librerie tomcat)
     - /usr/lib/jvm/java-8-oracle
     - /var/lib/tomcat7/webapps
+  - modi per risolvere: zsh: exec format error: script/deploy
+    - mettere :
+    - mettere true
+    - mettere #!/bin/bash
 
   
 - deploy della servlet:
