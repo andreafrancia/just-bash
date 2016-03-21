@@ -2,5 +2,29 @@
   wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
 - compilare la servlet
   javac -cp lib/servlet-api.jar example/HelloWorld.java
+- data dir
 - deployare tomcat
 - deployare la servlet
+- tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
+
+
+/etc/default/tomcat7 (file di configurazione)
+/usr/share/tomcat7-admin/manager (applicazione manager)
+/usr/share/tomcat7/lib (librerie tomcat)
+/usr/lib/jvm/java-8-oracle
+/var/lib/tomcat7/webapps
+
+
+cp HelloWorld.class /var/lib/tomcat7/webapps/ROOT
+mkdir -p /var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml
+cat >/var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml << \'
+<servlet>
+   <servlet-name>HelloWorld</servlet-name>
+   <servlet-class>HelloWorld</servlet-class>
+</servlet>
+
+<servlet-mapping>
+   <servlet-name>HelloWorld</servlet-name>
+   <url-pattern>/HelloWorld</url-pattern>
+</servlet-mapping>
+'
