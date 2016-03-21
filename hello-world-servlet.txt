@@ -1,9 +1,6 @@
 - scaricare tomcat
+  wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
 - compilare la servlet
+  javac -cp lib/servlet-api.jar example/HelloWorld.java
 - deployare tomcat
 - deployare la servlet
-
-
-    wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
-    
-- tar xvfz apache-tomcat-8.0.32.tar.gz
