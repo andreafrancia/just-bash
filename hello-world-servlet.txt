@@ -1,15 +1,15 @@
 Specifiche:
 
   - deploy should install the servlet:
-    - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world
+    - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
     - -> 200 not 404
-  - there is a single command for deploy
-    - script/deploy
-  - should copy the class file:
+  - FAIL should copy the class file:
     - vagrant ssh -c 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
-  - we should be able to compile the servlet:
+  - PASS there is a single command for deploy
+    - script/deploy
+  - PASS we should be able to compile the servlet:
     - javac -cp lib/servlet-api.jar example/HelloWorld.java
-  - we should have a tomcat version:
+  - PASS we should have a tomcat version:
     - ls downloads/apache-tomcat-7.0.68.tar.gz
 
 Regole:
@@ -48,6 +48,7 @@ Notes:
 
 TODO:
 
+  - installare MacVim che prende anche la copia tipo commmand+C
   - definire cosa intendo quando dico che lo "script crasha"
   - aggiungere linea di comando che mette l'exit code nel PROMPT
   - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
