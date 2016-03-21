@@ -1,6 +1,8 @@
 
+- there is a single command for deploy
+  - script/deploy
 - deploy should install the servlet:
-  - 
+  - TBD
 - should copy the class file:
   - vagrant ssh -c 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
 - we should be able to compile the servlet:
