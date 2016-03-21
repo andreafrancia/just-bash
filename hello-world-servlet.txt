@@ -13,11 +13,11 @@ Notes:
   - tomcat has been downloaded from here:  
     - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
   - tomcat directories:
-  - /etc/default/tomcat7 (file di configurazione)
-  - /usr/share/tomcat7-admin/manager (applicazione manager)
-  - /usr/share/tomcat7/lib (librerie tomcat)
-  - /usr/lib/jvm/java-8-oracle
-  - /var/lib/tomcat7/webapps
+    - /etc/default/tomcat7 (file di configurazione)
+    - /usr/share/tomcat7-admin/manager (applicazione manager)
+    - /usr/share/tomcat7/lib (librerie tomcat)
+    - /usr/lib/jvm/java-8-oracle
+    - /var/lib/tomcat7/webapps
 
   
 - deploy della servlet:
