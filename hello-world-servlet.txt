@@ -42,6 +42,8 @@ Notes:
     - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf =====\e[0m\] \` $PS1"
   - linea Vagrantfile per forwardare tomcat:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
+  - alias pazzia:
+    - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
 
 TODO:
 
