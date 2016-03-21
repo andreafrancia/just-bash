@@ -13,11 +13,12 @@ Specifiche:
 
 Regole:
 
-  - sviluppiamo una feature alla volta
-  - per lo sviluppo dello script di deploy usiamo le tecniche di sviluppo tipiche del TDD
-  - c'è un elenco di features che chiamiamo TODO list
-  - la TODO list parte con pochi (o anche un punto) che è l'acceptance test finale
-  - l'obiettivo è creare uno script di deploy in grado di deployare una stupida servlet
+  - (rule) sviluppiamo una feature alla volta
+  - (rule) per lo sviluppo dello script di deploy usiamo le tecniche di sviluppo tipiche del TDD
+  - (rule) c'è un elenco di features che chiamiamo TODO list
+  - (rule) la TODO list parte con pochi (o anche un punto) che è l'acceptance test finale
+  - (rule) l'obiettivo è creare uno script di deploy in grado di deployare una stupida servlet
+  - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
   - (requisiti extra) la servlet per funzionare richiede MySQL
   - (requisiti extra) la servlet che richiede il Sun di Oracle
   - (requisiti extra) per testare la servlet bisogna fare una fixture sul database
@@ -37,8 +38,10 @@ Notes:
     - mettere :
     - mettere true
     - mettere #!/bin/bash
-  - barra verde/rossa nel prompt: 
+  - barra verde/rossa nel prompt della Bash:
     - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf =====\e[0m\] \` $PS1"
+  - linea Vagrantfile per forwardare tomcat:
+    - config.vm.network "forwarded_port", guest: 8080, host: 8080
 
 TODO:
 
