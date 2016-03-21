@@ -34,7 +34,11 @@ Notes:
   - how to install git:
     - git --version || sudo apt-get install git-core -y
   - how to create a bare repository:
-    - mkdir -p repo.git && cd repo.git && git init --bare
+    - ssh default 'mkdir -p repo.git && cd repo.git && git init --bare'
+  - how to create the working copy (non idempotent)
+    - git clone repo.git/ working-copy
+  - create a working copy idempotent
+    - mkdir -p working-copy && git init
   - tomcat has been downloaded from here:  
     - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
   - tomcat directories:
@@ -48,7 +52,7 @@ Notes:
     - mettere true
     - mettere #!/bin/bash
   - barra verde/rossa nel prompt della Bash:
-    - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf =====\e[0m\] \` $PS1"
+    - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf \\$\e[0m\] \` $PS1"
   - linea Vagrantfile per forwardare tomcat:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
   - alias pazzia:
@@ -58,6 +62,9 @@ Notes:
   - copiare un file usando rsync over SSH:
     - rsync Vagrantfile default:
   - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
+  - git log  --oneline --graph --color
+  - git config --global alias.st "status"
+
 
 TODO:
 
