@@ -1,7 +1,8 @@
 Specifiche:
 
   - deploy should install the servlet:
-    - TBD
+    - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world
+    - -> 200 not 404
   - there is a single command for deploy
     - script/deploy
   - should copy the class file:
@@ -49,6 +50,8 @@ TODO:
 
   - definire cosa intendo quando dico che lo "script crasha"
   - aggiungere linea di comando che mette l'exit code nel PROMPT
+  - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
+  - 
   
 - deploy della servlet:
   cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
