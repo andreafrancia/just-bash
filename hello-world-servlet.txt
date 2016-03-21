@@ -10,6 +10,18 @@
 - we should have a tomcat version:
   - ls downloads/apache-tomcat-7.0.68.tar.gz
 
+Regole:
+
+  - sviluppiamo una feature alla volta
+  - per lo sviluppo dello script di deploy usiamo le tecniche di sviluppo tipiche del TDD
+  - c'è un elenco di features che chiamiamo TODO list
+  - la TODO list parte con pochi (o anche un punto) che è l'acceptance test finale
+  - l'obiettivo è creare uno script di deploy in grado di deployare una stupida servlet
+  - (requisiti extra) la servlet per funzionare richiede MySQL
+  - (requisiti extra) la servlet che richiede il Sun di Oracle
+  - (requisiti extra) per testare la servlet bisogna fare una fixture sul database
+  - (requisiti extra) la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
+
 Notes:
 
   - tomcat has been downloaded from here:  
