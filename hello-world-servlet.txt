@@ -1,15 +1,19 @@
 Specifiche:
 
-  - deploy should install the servlet:
+  - TODO deploy should install the servlet:
     - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
     - -> 200 not 404
-  - FAIL should copy the class file:
-    - vagrant ssh -c 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
-  - PASS there is a single command for deploy
+  - TODO should copy the class file:
+    - ssh default 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
+  - DONE sono in grado di copiare un file su Vagrant:
+    - rsync Vagrantfile default:
+  - DONE accedere alla vagrant usando ssh pulito
+    - vagrant ssh-config >> ~/.ssh/config
+  - DONE there is a single command for deploy
     - script/deploy
-  - PASS we should be able to compile the servlet:
+  - DONE we should be able to compile the servlet:
     - javac -cp lib/servlet-api.jar example/HelloWorld.java
-  - PASS we should have a tomcat version:
+  - DONE we should have a tomcat version:
     - ls downloads/apache-tomcat-7.0.68.tar.gz
 
 Regole:
@@ -45,6 +49,7 @@ Notes:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
   - alias pazzia:
     - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
+  - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
 
 TODO:
 
