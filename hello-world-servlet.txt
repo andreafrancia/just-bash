@@ -1,8 +1,24 @@
-- scaricare tomcat
-  wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
-- compilare la servlet
-  javac -cp lib/servlet-api.jar example/HelloWorld.java
-- data dir
+
+- deploy should install the servlet:
+  - 
+- should copy the class file:
+  - vagrant ssh -c 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
+- we should be able to compile the servlet:
+  - javac -cp lib/servlet-api.jar example/HelloWorld.java
+- we should have a tomcat version:
+  - ls downloads/apache-tomcat-7.0.68.tar.gz
+
+Notes:
+
+  - tomcat has been downloaded from here:  
+    - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
+  
+- deploy della servlet:
+  cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
+- data dir:
+  - vagrant ssh -c "ls /vagrant"
+- don't update all the times
+
 - deployare tomcat
 - deployare la servlet
 - tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
@@ -15,7 +31,7 @@
 /var/lib/tomcat7/webapps
 
 
-cp HelloWorld.class /var/lib/tomcat7/webapps/ROOT
+
 mkdir -p /var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml
 cat >/var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml << \'
 <servlet>
