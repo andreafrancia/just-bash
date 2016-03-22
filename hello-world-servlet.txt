@@ -5,14 +5,6 @@ Pushare
 - TODO deploy should install the servlet:
   - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
   - -> 200 not 404
-- TODO should copy the class file:
-  - ssh default 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
-- PASS there is a single command for deploy
-  - script/deploy
-- PASS we should be able to compile the servlet:
-  - javac -cp lib/servlet-api.jar example/HelloWorld.java
-- PASS we should have a tomcat version:
-  - ls downloads/apache-tomcat-7.0.68.tar.gz
 
 Regole:
 
@@ -22,11 +14,15 @@ Regole:
   - (rule) la TODO list parte con pochi (o anche un punto) che è l'acceptance test finale
   - (rule) l'obiettivo è creare uno script di deploy in grado di deployare una stupida servlet
   - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
-  - (requisiti extra) deployare una specifica versione
-  - (requisiti extra) la servlet per funzionare richiede MySQL
-  - (requisiti extra) la servlet che richiede il Sun di Oracle
-  - (requisiti extra) per testare la servlet bisogna fare una fixture sul database
-  - (requisiti extra) la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
+  - (requisito) single command deploy: script/deploy
+  - (requisito) lo script di deploy tocca la macchina (uname -a)
+  - (requisito) lo script di deploy installa tomcat 
+  - (requisito) deployare "Hello World" con file statico
+  - (requisito) deployare una specifica versione
+  - (requisito) la servlet per funzionare richiede MySQL
+  - (requisito) la servlet che richiede il Sun di Oracle
+  - (requisito) per testare la servlet bisogna fare una fixture sul database
+  - (requisito) la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
   - (spiego) trucco del cd tra parentesi
   - (spiego) l'idempotenza prevista: mkdir -> mkdir -p
   - (spiego) l'idempotenza con sonda: nginx --version || apt-get install nginx -y
@@ -52,6 +48,12 @@ Notes:
       git fetch -u origin master &&
       git checkout master
       )
+  - java servlet compiling:
+    - javac -cp lib/servlet-api.jar example/HelloWorld.java
+  - copy .class:
+    - ssh default 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
+  - check tomcat
+    - ls downloads/apache-tomcat-7.0.68.tar.gz
   - tomcat has been downloaded from here:  
     - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
   - tomcat directories:

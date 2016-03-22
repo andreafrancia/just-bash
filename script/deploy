@@ -1,1 +1,3 @@
-:
+ssh vagrant@default "
+uname -a
+"
