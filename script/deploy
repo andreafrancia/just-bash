@@ -1,2 +1,2 @@
 #!/bin/bash
-vagrant ssh -c 'uname -a'
+ssh -F ssh-config-for-vagrant default 'uname -a'
