@@ -35,9 +35,9 @@ Checklist:
     - git rm script/deploy && git commit -m "Reset" script/deploy
   - impostare gli alias:
     - alias c='git commit -m Improved -a'
-      
-  - vagrant destroy && vagrant up
   - togliere 'Host default' da ~/.ssh-config
+    - 
+  - vagrant destroy && vagrant up
   - verificare che il copia e incolla su vim funziona
 
 Notes:
