@@ -35,7 +35,7 @@ Presentazione:
   - (rule) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
   
   - DONE (requisito) single command deploy: script/deploy
-  - (requisito) lo script di deploy tocca la macchina (uname -a)
+  - DONE (requisito) lo script di deploy tocca la macchina (uname -a)
   - (requisito) deve funzionare sia con la vagrant locale che con i server di produzione
   - (requisito) lo script di deploy installa tomcat 
   - (requisito) deployare "Hello World" con file statico
