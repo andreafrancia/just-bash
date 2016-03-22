@@ -1,1 +1,2 @@
 #!/bin/bash
+vagrant ssh -c 'uname -a'
