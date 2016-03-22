@@ -33,6 +33,9 @@ Checklist:
 
   - fare il reset:
     - git rm script/deploy && git commit -m "Reset" script/deploy
+  - impostare gli alias:
+    - alias c='git commit -m Improved -a' &&
+      
   - vagrant destroy && vagrant up
   - togliere 'Host default' da ~/.ssh-config
   - verificare che il copia e incolla su vim funziona
@@ -78,8 +81,6 @@ Notes:
     - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf \\$\e[0m\] \` $PS1"
   - linea Vagrantfile per forwardare tomcat:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
-  - alias pazzia:
-    - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
   - accedere alla vagrant usando ssh pulito:
     - vagrant ssh-config >> ~/.ssh/config
   - copiare un file usando rsync over SSH:
@@ -87,6 +88,8 @@ Notes:
   - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
   - git log  --oneline --graph --color
   - git config --global alias.st "status"
+  - alias pazzia:
+    - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
 
 
 TODO:
