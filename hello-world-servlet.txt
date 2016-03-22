@@ -29,6 +29,14 @@ Regole:
   - (spiego) l'idempotenza con sovrascrittura: ln -s -> ln -sf
   - (spiego) l'idempotenza con preparazione: ln -s -> rm -f target && ln -s source target
 
+Checklist:
+
+  - cancellare script/deploy
+  - committare
+  - vagrant destroy && vagrant up
+  - togliere 'Host default' da ~/.ssh-config
+
+
 Notes:
 
   - pushare il repository sulla macchina:
