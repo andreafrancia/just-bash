@@ -69,9 +69,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
     sudo apt-get install -y vim-nox
+    sudo apt-get install -y elinks
     sudo apt-get install -y openjdk-7-jdk
     sudo apt-get install -y tomcat7
-    sudo apt-get install -y elinks
     sudo apt-get install -y tomcat7-examples
     sudo service tomcat7 restart
   SHELL
