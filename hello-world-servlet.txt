@@ -8,13 +8,16 @@ Pushare
 
 Checklist:
 
+  - mettere il commento nel Vagrant per la porta 8080
+  - decidere se il tomcat lo devono mettere i sistemisti o meno
+  - sistemare il problema del vim all'avvio
+  - verificare che il copia e incolla su vim funziona
   - fare il reset:
     - git rm script/deploy && git commit -m "Reset" script/deploy
   - impostare gli alias:
     - alias c='git commit -m Improved -a'
   - togliere 'Host default' da ~/.ssh-config
   - vagrant destroy && vagrant up
-  - verificare che il copia e incolla su vim funziona
 
 Presentazione:
 
