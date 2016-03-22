@@ -18,19 +18,19 @@ Checklist:
 
 Presentazione:
 
-  - (metodo) sviluppiamo una feature alla volta
-  - (metodo) "To Do List (1)": abbiamo un elenco di feature ("To Do List")
-  - (metodo) "To Do List (2)": teniamo aggiornato l'elenco marcando quelle che sono sviluppate 
-  - (metodo) "To Do List (3)": teniamo aggiornata l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
-  - (metodo) "To Do List (4)": lavoriamo una feature alla volta
-  - (metodo) "To Do List (5)": se durante la lavorazione di una feature scopriamo che manca qualcosa: 1) fermiamo il lavoro, 2) aggiorniamo la lista, 3) passiamo a lavorare alla nuova priorità ("Mikado Method")
-  - (metodo) "To Do List (6)": In genere è possibile e anche normale che la To Do list all'inizio contenga un solo punto e poi, man a mano che il lavoro prosegue si popoli di diversi punti
-  - (metodo) "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
   - (problema) L'obiettivo è scrivere uno script di deploy che faccia il deploy automatico di un software su un server
   - (problema) Il server è una macchina Vagrant accessibile con "vagrant ssh"
   - (problema) La macchina dovrebbe essere già stata creata e provisionata
   - (problema) Il software da installare cambierà nel tempo, come succede nella realtà.
   - (problema) Immaginatevi che all'inizio sia un software molto semplice
+
+  - (metodo) "To Do List (4)": lavoriamo una feature alla volta
+  - (metodo) "To Do List (1)": abbiamo un elenco di feature ("To Do List")
+  - (metodo) "To Do List (2)": teniamo aggiornato l'elenco marcando quelle che sono sviluppate 
+  - (metodo) "To Do List (3)": teniamo aggiornata l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
+  - (metodo) "To Do List (5)": se durante la lavorazione di una feature scopriamo che manca qualcosa: 1) fermiamo il lavoro, 2) aggiorniamo la lista, 3) passiamo a lavorare alla nuova priorità ("Mikado Method")
+  - (metodo) "To Do List (6)": In genere è possibile e anche normale che la To Do list all'inizio contenga un solo punto e poi, man a mano che il lavoro prosegue si popoli di diversi punti
+  - (metodo) "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
   - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
   - (rule) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
   
