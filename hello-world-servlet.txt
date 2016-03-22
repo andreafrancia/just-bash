@@ -31,8 +31,8 @@ Regole:
 
 Checklist:
 
-  - cancellare script/deploy
-  - committare
+  - fare il reset:
+    - git rm script/deploy && git commit -m "Reset" script/deploy
   - vagrant destroy && vagrant up
   - togliere 'Host default' da ~/.ssh-config
   - verificare che il copia e incolla su vim funziona
