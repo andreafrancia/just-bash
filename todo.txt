@@ -8,6 +8,8 @@ Pushare
 
 Checklist:
 
+  - rename di ssh-config-for-vagrant
+  - togliere ssh-config-for-vagrant
   - vagrant destroy && vagrant up
   - farlo subito il vagrant
   - impostare gli alias:
@@ -37,11 +39,11 @@ Presentazione:
   - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
   - (rule) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
   
-  - (requisito) single command deploy: script/deploy
-  - (requisito) lo script di deploy tocca la macchina (uname -a)
-  - (requisito) deve funzionare sia con la vagrant locale che con i server di produzione
-  - (requisito) lo script di deploy installa tomcat 
+  - DONE (requisito) single command deploy: script/deploy
+  - DONE (requisito) lo script di deploy tocca la macchina (uname -a)
+  - DONE (requisito) lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
   - (requisito) deployare "Hello World" con file statico
+  - (requisito) lo script di deploy installa tomcat 
   - (requisito) deployare una specifica versione
   - (requisito) la servlet per funzionare richiede MySQL
   - (requisito) la servlet che richiede il Sun di Oracle
