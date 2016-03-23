@@ -57,6 +57,7 @@ Presentazione:
 
 Notes:
 
+  - (feedback) versione nel Vagrantfile
   - pushare il repository sulla macchina:
     - git push ssh://vagrant@default/home/vagrant/repo.git HEAD
   - how to install git:
@@ -138,10 +139,11 @@ cat >/var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml << \'
 
 Notes for deb-set-selection
 
-  - Per installare mysql senza dover mettere la password:
-    - sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password my_password'
-    - sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password my_password'
-    - sudo apt-get -y install mysql-server
+Per installare mysql senza dover mettere la password:
+
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password my_password'
+    sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password my_password'
+    sudo apt-get -y install mysql-server
 
 Notes from an acient test-all script:
 
