@@ -8,5 +8,8 @@ expect_success() {
         assert_no_failures=false
     }
 }
-expect_success false
+
+expect_success true
+expect_success script/deploy
+
 $assert_no_failures
