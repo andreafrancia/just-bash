@@ -8,15 +8,16 @@ Pushare
 
 Checklist:
 
-  - mettere il commento nel Vagrant per la porta 8080
-  - decidere se il tomcat lo devono mettere i sistemisti o meno
-  - verificare che il copia e incolla su vim funziona
-  - fare il reset:
-    - git rm script/deploy && git commit -m "Reset" script/deploy
+  - vagrant destroy && vagrant up
+  - farlo subito il vagrant
   - impostare gli alias:
     - alias c='git commit -m Improved -a'
+  - verificare che il copia e incolla su vim funziona
+  - mettere il commento nel Vagrant per la porta 8080
+  - decidere se il tomcat lo devono mettere i sistemisti o meno
+  - fare il reset:
+    - git rm script/deploy && git commit -m "Reset" script/deploy
   - togliere 'Host default' da ~/.ssh-config
-  - vagrant destroy && vagrant up
 
 Presentazione:
 
@@ -26,19 +27,19 @@ Presentazione:
   - (problema) Il software da installare cambierà nel tempo, come succede nella realtà.
   - (problema) Immaginatevi che all'inizio sia un software molto semplice
 
-  - (metodo) "To Do List (4)": lavoriamo una feature alla volta
-  - (metodo) "To Do List (1)": abbiamo un elenco di feature ("To Do List")
-  - (metodo) "To Do List (2)": teniamo aggiornato l'elenco marcando quelle che sono sviluppate 
-  - (metodo) "To Do List (3)": teniamo aggiornata l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
+  - (metodo) "To Do List (1)": lavoriamo una feature alla volta
+  - (metodo) "To Do List (2)": abbiamo un elenco di feature ("To Do List")
+  - (metodo) "To Do List (3)": teniamo aggiornato l'elenco marcando quelle che sono sviluppate 
+  - (metodo) "To Do List (4)": teniamo aggiornata l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
   - (metodo) "To Do List (5)": se durante la lavorazione di una feature scopriamo che manca qualcosa: 1) fermiamo il lavoro, 2) aggiorniamo la lista, 3) passiamo a lavorare alla nuova priorità ("Mikado Method")
   - (metodo) "To Do List (6)": In genere è possibile e anche normale che la To Do list all'inizio contenga un solo punto e poi, man a mano che il lavoro prosegue si popoli di diversi punti
   - (metodo) "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
   - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
   - (rule) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
   
-  - DONE (requisito) single command deploy: script/deploy
-  - DONE (requisito) lo script di deploy tocca la macchina (uname -a)
-  - DONE (requisito) deve funzionare sia con la vagrant locale che con i server di produzione
+  - (requisito) single command deploy: script/deploy
+  - (requisito) lo script di deploy tocca la macchina (uname -a)
+  - (requisito) deve funzionare sia con la vagrant locale che con i server di produzione
   - (requisito) lo script di deploy installa tomcat 
   - (requisito) deployare "Hello World" con file statico
   - (requisito) deployare una specifica versione
