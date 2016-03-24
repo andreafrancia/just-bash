@@ -29,18 +29,14 @@ Regole:
   - manteniamo un elenco di feature ("To Do List")
   - teniamo aggiornato l'elenco
   - quando finiamo di implementare una feature la marchiamo DONE, e committiamo
-  - teniamo aggiornata l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
-  - se durante la lavorazione di una feature scopriamo che manca qualcosa: 1) fermiamo il lavoro, 2) aggiorniamo la lista, 3) passiamo a lavorare alla nuova priorità ("Mikado Method")
-  - In genere è possibile e anche normale che la To Do list all'inizio contenga un solo punto e poi, man a mano che il lavoro prosegue si popoli di diversi punti
+  - teniamo aggiornato l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
   - "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
-  - sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
-  - usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
 
 Features:
 
-  - DONE single command deploy: script/deploy
-  - DONE lo script di deploy tocca la macchina (uname -a)
-  - DONE lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
+  - single command deploy: script/deploy
+  - lo script di deploy tocca la macchina (uname -a)
+  - lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
   - la macchina risponde in HTTP su 8080
   - deployare "Hello World" con file statico
   - lo script di deploy installa tomcat 
