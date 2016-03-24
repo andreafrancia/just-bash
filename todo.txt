@@ -11,7 +11,6 @@ Checklist:
       vagrant.ssh-config \
       script/deploy
     git commit -m "Reset" -a
-  - assicurarsi che la macchina sia provisionata, ad esempio che Tomcat sia installato
   - check esistenza 'Host default' da ~/.ssh-config (con grep)
   - ricordarsi di far partire la registrazione
 
@@ -25,43 +24,43 @@ Problema da risolvere:
 
 Regole:
 
-  - lavoriamo una feature alla volta ("wip = 1")
-  - manteniamo un elenco di feature ("To Do List")
-  - teniamo aggiornato l'elenco
-  - quando finiamo di implementare una feature la marchiamo DONE, e committiamo
-  - teniamo aggiornato l'elenco aggiungendo ogni nuova attività non prevista che diventa necessaria
-  - "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
+  - si implementa una feature alla volta ("wip = 1")
+  - abbiamo un elenco di feature ("To Do List")
+  - le feature fatte le marchiamo DONE
+  - prima di partire con l'implementazione spiegare il test
+  - se nascono delle nuove esigenze si aggiorna la todo list
 
-Features:
+Problema:
 
-  - single command deploy: script/deploy
-  - lo script di deploy tocca la macchina (uname -a)
-  - lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
-  - primo esercizio di deploy: file statico 
+  - il deploy script tocca la macchina (uname -a)
+  - il deploy script usa ssh puro (non vagrant ssh), lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
+  - il deploy script installa una pagina statica (hello-world.txt)
+  - il deploy script installa la pagina statica su nginx
+  - l'installazione di nginx è automatizzata
+  - l'installazione di nginx è idempotente
+  - il software da installare è una classe .java
   - la macchina target risponde in HTTP sulla sua porta 80
   - la macchina risponde in HTTP su 8080
-  - deployare "Hello World" con file statico
-  - lo script di deploy installa tomcat 
-  - deployare una specifica versione
   - la servlet per funzionare richiede MySQL
   - la servlet che richiede il Sun di Oracle
   - per testare la servlet bisogna fare una fixture sul database
   - la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
-  - (spiego) trucco del cd tra parentesi
-  - (spiego) l'idempotenza prevista: mkdir -> mkdir -p
-  - (spiego) l'idempotenza con sonda: nginx --version || apt-get install nginx -y
-  - (spiego) l'idempotenza con sovrascrittura: ln -s -> ln -sf
-  - (spiego) l'idempotenza con preparazione: ln -s -> rm -f target && ln -s source target
+  - deployare una specifica versione
 
 Notes:
 
+  - trucco del cd tra parentesi
+  - l'idempotenza prevista: mkdir -> mkdir -p
+  - l'idempotenza con sonda: nginx --version || apt-get install nginx -y
+  - l'idempotenza con sovrascrittura: ln -s -> ln -sf
+  - l'idempotenza con preparazione: ln -s -> rm -f target && ln -s source target
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
       git push default:/home/vagrant/repo.git master
   - (feedback) versione nel Vagrantfile
-  - pushare il repository sulla macchina:
-    - git push ssh://vagrant@default/home/vagrant/repo.git HEAD
   - how to install git:
     - git --version || sudo apt-get install git-core -y
+  - copiare un file usando rsync over SSH:
+    - rsync hello-world default:
   - how to create a bare repository:
     - ssh default 'mkdir -p repo.git && cd repo.git && git init --bare'
   - how to create the working copy (non idempotent)
@@ -97,28 +96,18 @@ Notes:
     - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf \\$\e[0m\] \` $PS1"
   - linea Vagrantfile per forwardare tomcat:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
-  - accedere alla vagrant usando ssh pulito:
+  - l'uso di SSH config
     - vagrant ssh-config >> ~/.ssh/config
-  - copiare un file usando rsync over SSH:
-    - rsync Vagrantfile default:
   - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
   - git log  --oneline --graph --color
   - git config --global alias.st "status"
-  - alias pazzia:
-    - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
-
-TODO:
-
-  - (todo) definire cosa intendo quando dico che lo "script crasha"
-  - (todo) aggiungere linea di comando che mette l'exit code nel PROMPT
-  - (todo) curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
-  - (todo) deploy della servlet:
+  - data dir: - vagrant ssh -c "ls /vagrant"
+  - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
+  - deploy della servlet:
     cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
-  - data dir:
-    - vagrant ssh -c "ls /vagrant"
-  - don't update all the times
-  - deployare tomcat
-  - deployare la servlet
+
+Altre note:
+
   - tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
 
 mkdir -p /var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml
@@ -142,8 +131,8 @@ Per installare mysql senza dover mettere la password:
 
 Per sapere le selections:
 
-  sudo apt-get install -y debconf-utils
-  debconf-get-selections
+    sudo apt-get install -y debconf-utils
+    debconf-get-selections
   
 
 Notes from an acient test-all script:
