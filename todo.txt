@@ -32,17 +32,19 @@ Presentazione:
   - (metodo) "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
   - (metodo) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
   - (metodo) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
-  
-  - DONE (requisito) single command deploy: script/deploy
-  - DONE (requisito) lo script di deploy tocca la macchina (uname -a)
-  - (requisito) lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
-  - (requisito) deployare "Hello World" con file statico
-  - (requisito) lo script di deploy installa tomcat 
-  - (requisito) deployare una specifica versione
-  - (requisito) la servlet per funzionare richiede MySQL
-  - (requisito) la servlet che richiede il Sun di Oracle
-  - (requisito) per testare la servlet bisogna fare una fixture sul database
-  - (requisito) la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
+
+Features:
+
+  - DONE single command deploy: script/deploy
+  - DONE lo script di deploy tocca la macchina (uname -a)
+  - lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
+  - deployare "Hello World" con file statico
+  - lo script di deploy installa tomcat 
+  - deployare una specifica versione
+  - la servlet per funzionare richiede MySQL
+  - la servlet che richiede il Sun di Oracle
+  - per testare la servlet bisogna fare una fixture sul database
+  - la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
   - (spiego) trucco del cd tra parentesi
   - (spiego) l'idempotenza prevista: mkdir -> mkdir -p
   - (spiego) l'idempotenza con sonda: nginx --version || apt-get install nginx -y
