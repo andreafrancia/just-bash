@@ -4,11 +4,13 @@ Checklist:
   - (on-the-net) fare restart della vagrant
     vagrant destroy -f && vagrant up
   - reset
-    unalias d; unalias c; unalias t
+    unalias d; unalias c; unalias t; unalias s
     git rm ssh-config-for-vagrant -f
     alias c='git commit -m Improved -a'
-    git rm script/deploy && git commit -m "Reset" script/deploy
+    git rm -f script/deploy
     \cp -f pristine/Vagrantfile Vagrantfile
+    git add Vagrantfile
+    git commit -m "Reset" script/deploy Vagrantfile
   - check esistenza 'Host default' da ~/.ssh-config (con grep)
   - ricordarsi di far partire la registrazione
 
