@@ -34,7 +34,7 @@ Regole:
 
 Features:
 
-  - single command deploy: script/deploy
+  - DONE single command deploy: script/deploy
   - lo script di deploy tocca la macchina (uname -a)
   - lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
   - la macchina risponde in HTTP su 8080
