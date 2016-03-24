@@ -1,25 +1,19 @@
-Specifiche:
-
-Pushare 
-
-- TODO deploy should install the servlet:
-  - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
-  - -> 200 not 404
-
 Checklist:
 
-  - rename di ssh-config-for-vagrant
-  - togliere ssh-config-for-vagrant
-  - vagrant destroy && vagrant up
+  - spegnere Dropbox
   - farlo subito il vagrant
-  - impostare gli alias:
-    - alias c='git commit -m Improved -a'
-  - verificare che il copia e incolla su vim funziona
+  - reset
+    vagrant destroy -f && vagrant up
+    unalias d; unalias c; unalias t
+    git rm ssh-config-for-vagrant -f
+    alias c='git commit -m Improved -a'
   - mettere il commento nel Vagrant per la porta 8080
+  - verificare che il copia e incolla su vim funziona
   - decidere se il tomcat lo devono mettere i sistemisti o meno
   - fare il reset:
     - git rm script/deploy && git commit -m "Reset" script/deploy
   - togliere 'Host default' da ~/.ssh-config
+  - ricordarsi di far partire la registrazione
 
 Presentazione:
 
@@ -145,6 +139,12 @@ Per installare mysql senza dover mettere la password:
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password my_password'
     sudo apt-get -y install mysql-server
 
+Per sapere le selections:
+
+  sudo apt-get install -y debconf-utils
+  debconf-get-selections
+  
+
 Notes from an acient test-all script:
 
 set -o errexit
@@ -170,3 +170,8 @@ git commit -am .
 # test math 1+1 == 2
 echo "1+1" | bc > actual
 diff -u <(echo "2") actual
+
+- TODO deploy should install the servlet:
+  - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
+  - -> 200 not 404
+
