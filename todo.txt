@@ -1,15 +1,14 @@
 Checklist:
 
-  - spegnere Dropbox
-  - farlo subito il vagrant
-  - reset
+  - (off the record) spegnere Dropbox
+  - (on-the-net) fare restart della vagrant
     vagrant destroy -f && vagrant up
+  - reset
     unalias d; unalias c; unalias t
     git rm ssh-config-for-vagrant -f
     alias c='git commit -m Improved -a'
     git rm script/deploy && git commit -m "Reset" script/deploy
-  - check esistenza 'Host default' da ~/.ssh-config
-  - usare grep per check Host default
+  - check esistenza 'Host default' da ~/.ssh-config (con grep)
   - mettere il commento nel Vagrant per la porta 8080
   - verificare che il copia e incolla su vim funziona
   - decidere se il tomcat lo devono mettere i sistemisti o meno
@@ -54,6 +53,8 @@ Features:
 
 Notes:
 
+  - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
+      git push default:/home/vagrant/repo.git master
   - (feedback) versione nel Vagrantfile
   - pushare il repository sulla macchina:
     - git push ssh://vagrant@default/home/vagrant/repo.git HEAD
@@ -104,22 +105,19 @@ Notes:
   - alias pazzia:
     - alias improved='diff <(git status --short) - <<< " M hello-world-servlet.txt" && git commit -m "Improved" hello-world-servlet.txt'
 
-
 TODO:
 
-  - installare MacVim che prende anche la copia tipo commmand+C
-  - definire cosa intendo quando dico che lo "script crasha"
-  - aggiungere linea di comando che mette l'exit code nel PROMPT
-  - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
-  
-- deploy della servlet:
-  cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
-- data dir:
-  - vagrant ssh -c "ls /vagrant"
-- don't update all the times
-- deployare tomcat
-- deployare la servlet
-- tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
+  - (todo) definire cosa intendo quando dico che lo "script crasha"
+  - (todo) aggiungere linea di comando che mette l'exit code nel PROMPT
+  - (todo) curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
+  - (todo) deploy della servlet:
+    cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
+  - data dir:
+    - vagrant ssh -c "ls /vagrant"
+  - don't update all the times
+  - deployare tomcat
+  - deployare la servlet
+  - tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
 
 mkdir -p /var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml
 cat >/var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml << \'
@@ -133,8 +131,6 @@ cat >/var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml << \'
    <url-pattern>/HelloWorld</url-pattern>
 </servlet-mapping>
 '
-
-Notes for deb-set-selection
 
 Per installare mysql senza dover mettere la password:
 
