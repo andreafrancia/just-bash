@@ -12,6 +12,7 @@ Checklist:
     \cp -f pristine/Vagrantfile Vagrantfile
     git add Vagrantfile
     git commit -m "Reset" -a
+  - assicurarsi che la macchina sia provisionata, ad esempio che Tomcat sia installato
   - check esistenza 'Host default' da ~/.ssh-config (con grep)
   - ricordarsi di far partire la registrazione
 
@@ -34,9 +35,11 @@ Regole:
 
 Features:
 
-  - DONE single command deploy: script/deploy
-  - DONE lo script di deploy tocca la macchina (uname -a)
+  - single command deploy: script/deploy
+  - lo script di deploy tocca la macchina (uname -a)
   - lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
+  - primo esercizio di deploy: file statico 
+  - la macchina target risponde in HTTP sulla sua porta 80
   - la macchina risponde in HTTP su 8080
   - deployare "Hello World" con file statico
   - lo script di deploy installa tomcat 
