@@ -16,7 +16,7 @@ Checklist:
 
 Problema da risolvere:
 
-  - L'obiettivo è scrivere uno script di deploy che faccia il deploy automatico di un software su un server
+  - Scrivere uno script di deploy che faccia il deploy automatico di un software su un server
   - Il server è una macchina Vagrant accessibile con "vagrant ssh"
   - La macchina dovrebbe essere già stata creata e provisionata
   - Il software da installare cambierà nel tempo, come succede nella realtà.
