@@ -33,8 +33,8 @@ Presentazione:
   - (metodo) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
   - (metodo) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
   
-  - (requisito) single command deploy: script/deploy
-  - (requisito) lo script di deploy tocca la macchina (uname -a)
+  - DONE (requisito) single command deploy: script/deploy
+  - DONE (requisito) lo script di deploy tocca la macchina (uname -a)
   - (requisito) lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
   - (requisito) deployare "Hello World" con file statico
   - (requisito) lo script di deploy installa tomcat 
