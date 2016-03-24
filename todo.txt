@@ -7,12 +7,12 @@ Checklist:
     unalias d; unalias c; unalias t
     git rm ssh-config-for-vagrant -f
     alias c='git commit -m Improved -a'
+    git rm script/deploy && git commit -m "Reset" script/deploy
+  - check esistenza 'Host default' da ~/.ssh-config
+  - usare grep per check Host default
   - mettere il commento nel Vagrant per la porta 8080
   - verificare che il copia e incolla su vim funziona
   - decidere se il tomcat lo devono mettere i sistemisti o meno
-  - fare il reset:
-    - git rm script/deploy && git commit -m "Reset" script/deploy
-  - togliere 'Host default' da ~/.ssh-config
   - ricordarsi di far partire la registrazione
 
 Presentazione:
@@ -30,12 +30,12 @@ Presentazione:
   - (metodo) "To Do List (5)": se durante la lavorazione di una feature scopriamo che manca qualcosa: 1) fermiamo il lavoro, 2) aggiorniamo la lista, 3) passiamo a lavorare alla nuova priorità ("Mikado Method")
   - (metodo) "To Do List (6)": In genere è possibile e anche normale che la To Do list all'inizio contenga un solo punto e poi, man a mano che il lavoro prosegue si popoli di diversi punti
   - (metodo) "Test First": prima di cominciare a lavorare su una feature progettiamo un modo per verificare che abbiamo finito: "definition of done"
-  - (rule) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
-  - (rule) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
+  - (metodo) sotto ogni specifica mettiamo il test, il test è un comando della shell che deve passare
+  - (metodo) usiamo il test dell'exit code per verificare se l'obiettivo è stato raggiunto
   
-  - DONE (requisito) single command deploy: script/deploy
-  - DONE (requisito) lo script di deploy tocca la macchina (uname -a)
-  - DONE (requisito) lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
+  - (requisito) single command deploy: script/deploy
+  - (requisito) lo script di deploy tocca la macchina (uname -a)
+  - (requisito) lo script per collegarsi deve usare ssh puro (non vagrant ssh), perché lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
   - (requisito) deployare "Hello World" con file statico
   - (requisito) lo script di deploy installa tomcat 
   - (requisito) deployare una specifica versione
