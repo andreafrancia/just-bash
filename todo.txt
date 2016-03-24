@@ -3,14 +3,13 @@ Checklist:
   - (off the record) spegnere Dropbox
   - (on-the-net) fare restart della vagrant
     vagrant destroy -f && vagrant up
+  - oppure fare il provision
+    vagrant provision
   - reset
     unalias d; unalias c; unalias t; unalias s
     git rm -f \
-      ssh-config-for-vagrant \
       vagrant.ssh-config \
       script/deploy
-    \cp -f pristine/Vagrantfile Vagrantfile
-    git add Vagrantfile
     git commit -m "Reset" -a
   - assicurarsi che la macchina sia provisionata, ad esempio che Tomcat sia installato
   - check esistenza 'Host default' da ~/.ssh-config (con grep)
