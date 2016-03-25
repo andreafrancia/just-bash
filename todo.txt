@@ -133,14 +133,16 @@ L'idempotenza
   - Però prima facciamo in modo che contenga qualcosa:
   - Esempio della creazione della working copy
     - dato un repository creato con:
-      rm -Rf repo.git && ( cd repo.git && git init --bare) && 
+      rm -Rf repo.git &&
+      mkdir repo.git &&
+      ( cd repo.git && git init -q --bare) &&
       { rm -Rf work &&
-        git clone repo.git work &&
+        git clone -q repo.git work &&
         (cd work &&
         touch one-file &&
         git add one-file &&
-        git commit -m add one-file &&
-        git push ) && rm -Rf work }
+        git commit -q -m add one-file &&
+        git push -q ) && rm -Rf work }
     - git -C repo.git log
     - vogliamo clonarlo in una working copy:
     - questa è la versione non idempotente:
@@ -159,23 +161,10 @@ L'idempotenza
     git fetch -u origin master &&
     git checkout master
     )
-    - Io vi faccio vedere la soluzione 
-  - Vediamo due problemi collegati: 
-    - uno più semplice dove la idempotenza ormai dovrebbe essere ovvia per voi
-    - uno più complicato
-  - Per piacere seguite anche quello semplice di modo perché l'outpouyt 
-  - Problema clonare un repository git:
-    - facciamo finta di avere un repository git: 
-      
-  - Versione non idempotente:
-  - 
-
-
-
-  - idempotent create a working copy
-
-
-
+  - facciamo pulizia
+    OK $ rm repo.git -Rf
+    OK $ rm working-copy -Rf
+  
 
 Notes:
 
