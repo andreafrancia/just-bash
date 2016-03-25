@@ -129,9 +129,36 @@ L'idempotenza
     OK $ mkdir -p repo.git && ( cd repo.git && git init --bare )
     Reinitialized existing Git repository in /Users/andrea/just-bash/repo.git/
     KO $
+  - Questo repository ci serve per il prossimo esercizio:
+  - Però prima facciamo in modo che contenga qualcosa:
   - Esempio della creazione della working copy
-  - L'implementazione non idempotente è la seguente:
-    - Questo è un caso in cui per raggiungere l'idempotenza richiede molte passaggi
+    - dato un repository creato con:
+      rm -Rf repo.git && ( cd repo.git && git init --bare) && 
+      { rm -Rf work &&
+        git clone repo.git work &&
+        (cd work &&
+        touch one-file &&
+        git add one-file &&
+        git commit -m add one-file &&
+        git push ) && rm -Rf work }
+    - git -C repo.git log
+    - vogliamo clonarlo in una working copy:
+    - questa è la versione non idempotente:
+      $ git clone repo.git working-copy
+    - questa è la versione idempotente con ruspa:
+      OK $ rm -Rf working-copy && git clone -q repo.git working-copy
+      OK $ rm -Rf working-copy && git clone -q repo.git working-copy
+    - La versione idempotente con ruspa va bene ma a volte potrebbe essere troppo costosa in termini di prestazioni
+  - Questa è la versione idempotente performante
+  - Ve la faccio vedere ma non spaventatevi:
+  - mkdir -p working-copy && (
+    cd working-copy && 
+    git init && 
+    ( git remote rm origin || true ) && 
+    git remote add -f origin ../repo.git && 
+    git fetch -u origin master &&
+    git checkout master
+    )
     - Io vi faccio vedere la soluzione 
   - Vediamo due problemi collegati: 
     - uno più semplice dove la idempotenza ormai dovrebbe essere ovvia per voi
@@ -146,22 +173,12 @@ L'idempotenza
 
 
   - idempotent create a working copy
-    - mkdir -p working-copy && (
-      cd working-copy && 
-      git init && 
-      ( git remote rm origin || true ) && 
-      git remote add -f origin ../repo.git && 
-      git fetch -u origin master &&
-      git checkout master
-      )
 
 
 
 
 Notes:
 
-  - Creare un bare repository
-    - mkdir -p repo.git && ( git -C repo.git init --bare )
   - trucco del cd tra parentesi
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
       git push default:/home/vagrant/repo.git master
@@ -192,8 +209,14 @@ Notes:
     - mettere :
     - mettere true
     - mettere #!/bin/bash
-  - barra verde/rossa nel prompt della Bash:
-    - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf \\$\e[0m\] \` $PS1"
+  - Prompt
+    - barra verde/rossa nel prompt della Bash:
+      - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf \\$\e[0m\] \` $PS1"
+    - prompt semplice in Zsh:
+      - PS2="> "
+    - Zsh:
+      export PROMPT=$'%{\e[0;%(?.32.31)m%}'$'%(?.OK.KO)'" \$"$'%{\e[0m%}'" " # testing prompt
+      export PS2="> " # simple continuation prompt
   - linea Vagrantfile per forwardare tomcat:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
   - l'uso di SSH config
