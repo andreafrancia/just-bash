@@ -164,7 +164,6 @@ L'idempotenza
   - facciamo pulizia
     OK $ rm repo.git -Rf
     OK $ rm working-copy -Rf
-  
 
 Notes:
 
