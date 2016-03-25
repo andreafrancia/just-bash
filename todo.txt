@@ -36,8 +36,6 @@ Problema:
   - il deploy script usa ssh puro (non vagrant ssh), lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
   - il deploy script installa una pagina statica (hello-world.txt)
   - il deploy script installa la pagina statica su nginx
-  - l'installazione di nginx è automatizzata
-  - l'installazione di nginx è idempotente
   - il software da installare è una classe .java
   - la macchina target risponde in HTTP sulla sua porta 80
   - la macchina risponde in HTTP su 8080
@@ -95,8 +93,75 @@ L'idempotenza
     - qui usiamo il metodo della ruspa
     - ha un grado di idempotenza più alto del precedente
 
+  - Alcuni comandi sono idempotenti di natura:
+  - chown -R qmaill:root /var/log/qmail
+  - chmod -R 750 /var/log/qmail 
+  
+  - Un problema tipico dell'idempotenza é questo:
+    - "Aggiungere una riga al file /etc/hosts"
+  - Questa è la versione non idempotente:
+    - echo '127.0.0.1 local.e-commerce.com' >> /etc/hosts
+    - non è idempotente
+    - ci sarebbe da dire qualcosa riguardo ai permessi, ma eventualmente lo vediamo dopo
+  - fgrep -q '127.0.0.1 local.e-commerce.com' /etc/hosts || echo '127.0.0.1 local.e-commerce.com' >> /etc/hosts
+    - questa è la versione idempotente
+    - è idempotente per sonda
+  - se vi sembra poco leggibile si può anche definire una funzione che riduce la duplicazione:
+    add_line_just_once() {
+      local line="$1"
+      local file="$2"
+      fgrep -q "$line" "$file" || echo "$line" >> "$file"
+    }
+  - e poi si può usare:
+    add_line_just_once '127.0.0.1 local.e-commerce.com' /etc/hosts
+
+  - Esempio della creazione di un bare repository git:
+  - versione non idempotente:
+    OK $ mkdir repo.git && ( cd repo.git && git init --bare )
+    Initialized empty Git repository in /Users/andrea/just-bash/repo.git/
+    OK $ mkdir repo.git && ( cd repo.git && git init --bare )
+    mkdir: repo.git: File exists
+    OK $
+  - versione idempotente:
+    OK $ rm repo.git -Rf # pulizia
+    OK $ mkdir -p repo.git && ( cd repo.git && git init --bare )
+    Initialized empty Git repository in /Users/andrea/just-bash/repo.git/
+    OK $ mkdir -p repo.git && ( cd repo.git && git init --bare )
+    Reinitialized existing Git repository in /Users/andrea/just-bash/repo.git/
+    KO $
+  - Esempio della creazione della working copy
+  - L'implementazione non idempotente è la seguente:
+    - Questo è un caso in cui per raggiungere l'idempotenza richiede molte passaggi
+    - Io vi faccio vedere la soluzione 
+  - Vediamo due problemi collegati: 
+    - uno più semplice dove la idempotenza ormai dovrebbe essere ovvia per voi
+    - uno più complicato
+  - Per piacere seguite anche quello semplice di modo perché l'outpouyt 
+  - Problema clonare un repository git:
+    - facciamo finta di avere un repository git: 
+      
+  - Versione non idempotente:
+  - 
+
+
+
+  - idempotent create a working copy
+    - mkdir -p working-copy && (
+      cd working-copy && 
+      git init && 
+      ( git remote rm origin || true ) && 
+      git remote add -f origin ../repo.git && 
+      git fetch -u origin master &&
+      git checkout master
+      )
+
+
+
+
 Notes:
 
+  - Creare un bare repository
+    - mkdir -p repo.git && ( git -C repo.git init --bare )
   - trucco del cd tra parentesi
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
       git push default:/home/vagrant/repo.git master
@@ -109,15 +174,6 @@ Notes:
     - ssh default 'mkdir -p repo.git && cd repo.git && git init --bare'
   - how to create the working copy (non idempotent)
     - git clone repo.git/ working-copy
-  - idempotent create a working copy
-    - mkdir -p working-copy && (
-      cd working-copy && 
-      git init && 
-      ( git remote rm origin || true ) && 
-      git remote add -f origin ../repo.git && 
-      git fetch -u origin master &&
-      git checkout master
-      )
   - java servlet compiling:
     - javac -cp lib/servlet-api.jar example/HelloWorld.java
   - copy .class:
