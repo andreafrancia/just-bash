@@ -48,22 +48,21 @@ Problema:
 Notes:
 
   - (todo) config.vm.hostname
-  - trucco del cd tra parentesi
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
-      git push default:/home/vagrant/repo.git master
-  - (feedback) versione nel Vagrantfile
+      git push target:/home/vagrant/repo.git master
+  - vagrant ssh-config --host target
   - how to install git:
     - git --version || sudo apt-get install git-core -y
   - copiare un file usando rsync over SSH:
-    - rsync hello-world default:
+    - rsync hello-world target:
   - how to create a bare repository:
-    - ssh default 'mkdir -p repo.git && cd repo.git && git init --bare'
+    - ssh target 'mkdir -p repo.git && cd repo.git && git init --bare'
   - how to create the working copy (non idempotent)
     - git clone repo.git/ working-copy
   - java servlet compiling:
     - javac -cp lib/servlet-api.jar example/HelloWorld.java
   - copy .class:
-    - ssh default 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
+    - ssh target 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
   - check tomcat
     - ls downloads/apache-tomcat-7.0.68.tar.gz
   - tomcat has been downloaded from here:  
@@ -76,6 +75,7 @@ Notes:
     - /var/lib/tomcat7/webapps
   - modi per risolvere: zsh: exec format error: script/deploy
     - mettere :
+    - mettere " "
     - mettere true
     - mettere #!/bin/bash
   - Prompt
@@ -92,7 +92,6 @@ Notes:
     - vagrant ssh-config >> ~/.ssh/config
   - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
   - git log  --oneline --graph --color
-  - git config --global alias.st "status"
   - data dir: - vagrant ssh -c "ls /vagrant"
   - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
   - deploy della servlet:
