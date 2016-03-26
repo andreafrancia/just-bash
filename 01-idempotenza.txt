@@ -1,6 +1,51 @@
 L'idempotenza
 =============
-  
+
+Una delle caratteristiche fondamentali dei sistemi di deploy automatico è che 
+semplicemente ci piacerebbe poter avviare (senza pensieri) lo script anche 
+seconda volta dopo la prima.
+
+Il punto è che uno script di deploy è veramente automatico solo se posso 
+avviarlo senza pensieri ogni volta che voglio, anche una volta di seguito 
+all'altra e l'effetto dei due avvii deve essere lo stesso di un avvio solo.
+
+Non è che il primo deploy va bene, e poi al secondo si spacca tutto solo perché 
+tenta di ricreare su DB una tabella che aveva già ricreato la volta precedente.
+
+Non è che dopo la seconda (o terza) esecuzione mi ritrovo due utenti di test 
+nel sistema, o altri duplicati delle cose che dovevano essere preparate dallo 
+script di deploy.
+
+Non è che dopo il primo deploy automatico prima di lanciare il secondo deploy 
+automatico io debba fare dei passi manuali per preparare l'ambiente ad essere 
+modificato "automaticamente" dallo script di deploy.
+
+A questo concetto molto pratico è stato dato lo stesso nome usato in matematica 
+per indicare quelle operazioni il cui effetto di ripetute applicazioni è lo 
+stesso di un unica applicazione: Idempotenza.
+
+Alcuni degli strumenti di deploy automatico e provisioning hanno interi sistemi 
+e astrazioni per gestire l'idempotenza.
+
+Io credo che in realtà l'idempotenza, se spiegata bene, sia un concetto molto 
+semplice da spiegare e anche da implementare.
+
+L'idempotenza si spiega così: "è come lavarsi le mani".
+Se hai le mani sporche o pulite e poi vai a lavartele dopo sono pulite.
+Se te le lavi due, tre, quattro volte di seguito, poi sono sempre pulite.
+
+Invece infornare una torta per cuocerla non è un'operazione idempotente, la 
+prima volta che la cuoci la torta va bene, la seconda volta che la inforni la 
+bruci.
+
+Di seguito mostrerò come ottenere l'idempotenza negli script di deploy usando 
+gli strumenti già presenti nel sistema operativo, senza impazzire 
+con framework complessi che richiedono mille dipendenze.
+
+
+Demo
+====
+
   - problema semplificato
   - analizziamo il problema nell'esecuzione di un unico semplice comando
   - una volta che abbiamo capito il problema e le soluzioni con un solo comando possiamo applicare gli stessi principi a qualsiasi script più complesso
