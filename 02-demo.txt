@@ -47,6 +47,7 @@ Problema:
 
 Notes:
 
+  - (todo) config.vm.hostname
   - trucco del cd tra parentesi
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
       git push default:/home/vagrant/repo.git master
