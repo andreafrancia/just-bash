@@ -10,6 +10,21 @@ expect_success() {
     }
 }
 
+expect_output() {
+    local expected_output="$1"; shift
+    local command="$*"
+    local actual_output="$( "$@"; )"
+    [[ "$actual_output" == "$expected_output" ]] || {
+        echo "Failed expectation for command: \`$command'"
+        echo " - expected output: $expected_output"
+        echo " -   actual output: $actual_output"
+    }
+}
+
 expect_success true
+expect_output 'foo
+bar' \
+    echo 'foo
+bar'
 
 $assert_no_failures
