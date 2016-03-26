@@ -10,6 +10,5 @@ expect_success() {
 }
 
 expect_success true
-expect_success script/deploy
 
 $assert_no_failures
