@@ -1,3 +1,4 @@
+#!/bin/bash
 set -o errexit
 assert_no_failures=true
 expect_success() {
