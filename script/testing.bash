@@ -16,8 +16,7 @@ expect_success() {
 "Failed expectation for command: \`$*'
  - expected success (exit code == 0)
  - got failure (exit code == $actual_exit_code)
-"
-)
+")
         assert_no_failures=false
     }
 }
@@ -27,9 +26,11 @@ expect_output() {
     local command="$*"
     local actual_output="$( "$@"; )"
     [[ "$actual_output" == "$expected_output" ]] || {
-        echo "Failed expectation for command: \`$command'"
-        echo " - expected output: $expected_output"
-        echo " -   actual output: $actual_output"
+        failures+=(
+"Failed expectation for command: \`$command'
+ - expected output: $expected_output
+ -   actual output: $actual_output
+")
         assert_no_failures=false
     }
 }
