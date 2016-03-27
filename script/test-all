@@ -4,4 +4,7 @@ source_rel() { source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$1"; }
 source_rel testing.bash
 
 reset_expectations
+
+"$@"
+
 report_any_failures
