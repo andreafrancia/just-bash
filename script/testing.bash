@@ -9,11 +9,13 @@ report_any_failures() {
 expect_success() {
     ( "$@"; ) || {
         local actual_exit_code="$?"
-        cat <<- EOF
-	Failed expectation for command: \`$*'
-	 - expected success (exit code == 0)
-	 - got failure (exit code == $actual_exit_code)
-	EOF
+        failures=()
+        failures+=(
+"Failed expectation for command: \`$*'
+ - expected success (exit code == 0)
+ - got failure (exit code == $actual_exit_code)"
+)
+        echo "${failures[*]}"
         assert_no_failures=false
     }
 }
