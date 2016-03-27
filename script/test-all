@@ -1,6 +1,9 @@
 #!/bin/bash
 set -o errexit
 assert_no_failures=true
+source_rel() { source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$1" }
+source_rel testing.bash
+
 expect_success() {
     ( "$@"; ) || {
         local actual_exit_code="$?"

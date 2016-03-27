@@ -48,6 +48,7 @@ Problema:
 Notes:
 
   - (todo) config.vm.hostname
+  - sberla: source_rel() { source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$1" }
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
       git push target:/home/vagrant/repo.git master
   - vagrant ssh-config --host target
