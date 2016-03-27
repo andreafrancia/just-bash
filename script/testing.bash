@@ -1,3 +1,11 @@
+reset_expectations() {
+    assert_no_failures=true
+}
+
+report_any_failures() {
+    $assert_no_failures
+}
+
 expect_success() {
     ( "$@"; ) || {
         local actual_exit_code="$?"
