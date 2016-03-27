@@ -1,21 +1,23 @@
 reset_expectations() {
+    failures=()
     assert_no_failures=true
 }
 
 report_any_failures() {
+    local IFS=
+    printf "%s" "${failures[*]}"
     $assert_no_failures
 }
 
 expect_success() {
     ( "$@"; ) || {
         local actual_exit_code="$?"
-        failures=()
         failures+=(
 "Failed expectation for command: \`$*'
  - expected success (exit code == 0)
- - got failure (exit code == $actual_exit_code)"
+ - got failure (exit code == $actual_exit_code)
+"
 )
-        echo "${failures[*]}"
         assert_no_failures=false
     }
 }

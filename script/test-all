@@ -5,6 +5,6 @@ source_rel testing.bash
 
 reset_expectations
 
-"$@"
+eval "$@"
 
 report_any_failures
