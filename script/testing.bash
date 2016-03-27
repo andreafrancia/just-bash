@@ -1,12 +1,11 @@
 reset_expectations() {
     failures=()
-    assert_no_failures=true
 }
 
 report_any_failures() {
     local IFS=
     printf "%s" "${failures[*]}"
-    $assert_no_failures
+    [[ ${#failures[@]} -eq 0 ]];
 }
 
 expect_success() {
@@ -17,7 +16,6 @@ expect_success() {
  - expected success (exit code == 0)
  - got failure (exit code == $actual_exit_code)
 ")
-        assert_no_failures=false
     }
 }
 
@@ -31,7 +29,6 @@ expect_output() {
  - expected output: $expected_output
  -   actual output: $actual_output
 ")
-        assert_no_failures=false
     }
 }
 
