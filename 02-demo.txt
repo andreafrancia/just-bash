@@ -1,12 +1,54 @@
+Introduzione:
+
+  - Il mio obiettivo per questa presentazione è condividere con il pubblico
+    alcune delle tecniche che uso per sviluppare gli script di deploy sul
+    lavoro.
+  - Il modo che ho scelto per farlo è la demo live.
+  - Vuol dire che risolverò durante il tempo della presentazione risolverò 
+    un esercizio di deployment.
+  - L'esercizio è molto semplificato, è molto semplice
+  - L'esercizio non è realistico però è comunque rappresentativo di quello che succede nella realtà.
+  - Mi è sembrato il modo migliore per fare vedere il mio modo di lavorare.
+
+Il problema:
+
+  - Scrivere uno script di deploy che faccia il deploy automatico di un software su un server
+  - Il server è una macchina Vagrant accessibile con "vagrant ssh"
+  - Il problema è composto da tre passi da risolvere in sequenza
+  - Ci sono tre passi per simulare un software che cambia nel tempo e quindi richiede che lo script di deploy si evolva nel tempo.
+
+Regole:
+
+  - implementerò una feature alla volta
+  - mi terrò una lista di cose da fare, una TODO list
+  - prima di implementare ogni feature progetterò un test per verificare che la feature venga implementata
+  - all'inizio dovrei avere il test che fallisce (ROSSO)
+  - poi implemento la feature e il test dovrebbe cominciare a passare (VERDE)
+  - di solito ogni volta che il test passa committo
+  - quando sono in barra VERDE è possibile che decida di rivedere la struttura dello script per migliorarlo senza cambiare il comportanmento (REFACTOR)
+  - potrebbe essere che mentre cerco di implementare una feature mi incarto perché mi è sfuggito qualcosa
+  - in questi casi fermo tutto, faccio revert all'ultimo momento in cui funzionava tutto e riparto
+  - se durante il lavoro mi accorgo che per continuare manca qualche pezzo, mi fermerò, aggiungerò la feature sulla TODO list e poi ricomincerò.
+  - per riuscire ho bisogno di concentrarmi e avrei bisogno che il pubblico facesse silenzio, soprattutto quando sono in barra rossa (cioè quando qualcosa non va)
+  - in particolare, durante la barra rossa, i suggerimenti non ti aiutano per nulla, se ho bisogno chiedo io.
+  
+Step dell'esercizio:
+
+  - 0) il deploy script tocca la macchina (uname -a) usando SSH
+  - 1) deploy di una pagina statica (hello-world.txt)
+  - 2) deploy di una servlet java
+
+Come lo risolvo:
+
+  - userò strumenti molto semplici: Vim, SSH, e Bash
+  - condividerò un terminale con due tab: uno per la macchina ospite e uno con la macchina target
+  - la macchina target è una macchina creata con Vagrant
+  - ma cercherermo fin da suibito di fare uno script che possa funzionare con le macchine di produzione
+
 Checklist:
 
-  - (intro) gli strumenti semplici sono vim, ssh, e bash
-  - (intro) la macchina vagrant si chiama 'default' perché 'default' è il nome di default
   - (todo) fare un test per il controllo della porta 80
   - (todo) mettere un file in /etc/nginx/conf.d/*.conf
-  - semplice (stupida)
-  - stabile
-  - matura (noiosa)
   - (note) rsync -e 'ssh -F vagrant.ssh-config' to-deploy-01/hello-world.txt default:
   - (todo) update virtualbox
   - (todo) fix Kaleidoscope
@@ -27,27 +69,8 @@ Checklist:
   - check esistenza 'Host default' da ~/.ssh-config (con grep)
   - ricordarsi di far partire la registrazione
 
-Problema da risolvere:
-
-  - Scrivere uno script di deploy che faccia il deploy automatico di un software su un server
-  - Il server è una macchina Vagrant accessibile con "vagrant ssh"
-  - La macchina dovrebbe essere già stata creata e provisionata
-  - Il software da installare cambierà nel tempo, come succede nella realtà.
-  - Immaginatevi che all'inizio sia un software molto semplice
-
-Regole:
-
-  - si implementa una feature alla volta ("wip = 1")
-  - abbiamo un elenco di feature ("To Do List")
-  - le feature fatte le marchiamo DONE
-  - prima di partire con l'implementazione spiegare il test
-  - se nascono delle nuove esigenze si aggiorna la todo list
-
 Passi:
 
-  - 0) il deploy script tocca la macchina (uname -a) usando SSH
-  - 1) deploy di una pagina statica (hello-world.txt)
-  - 2) deploy di una servlet java 
 
 Requisiti aggiuntivi:
 
@@ -58,8 +81,9 @@ Requisiti aggiuntivi:
 
 Notes:
 
-  - diff <(curl -s http://localhost:10080/) - <<< 'Hello World'
-  - Snapshot:
+  - (vagrant) la macchina vagrant si chiama 'default' perché 'default' è il nome di default
+  - (test) diff <(curl -s http://localhost:10080/) - <<< 'Hello World'
+  - (vagrant) Snapshot:
      - vagrant snapshot save start
      - vagrant snapshot restore start
   - (todo) config.vm.hostname
@@ -106,7 +130,6 @@ Notes:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
   - l'uso di SSH config
     - vagrant ssh-config >> ~/.ssh/config
-  - ssh -i .vagrant/machines/default/virtualbox/private_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no  -p 2222 -l vagrant  localhost
   - git log  --oneline --graph --color
   - data dir: - vagrant ssh -c "ls /vagrant"
   - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
@@ -118,9 +141,6 @@ Notes:
     - echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
     - echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
     - sudo apt-get install oracle-java7-installer --yes --force-yes # --force-yes per evitare problemi di chiave
-
-Altre note:
-
   - tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
 
 mkdir -p /var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml
@@ -146,34 +166,6 @@ Per sapere le selections:
 
     sudo apt-get install -y debconf-utils
     debconf-get-selections
-  
 
-Notes from an acient test-all script:
-
-set -o errexit
-
-source ~/.zshrc.local
-
-# quando però gli passo il messaggio usa quello per fare commmit
-wiki_commit "Messaggio" echo > actual
-diff -u <(cat << \"
-cd /Users/andrea/Dropbox/wiki
-git commit -am "Messaggio"
-"
-) actual
-
-# quando non gli passo niente, a parte (echo), il messaggio di commit è "."
-wiki_commit echo > actual
-diff -u <(cat << \"
-cd /Users/andrea/Dropbox/wiki
-git commit -am .
-"
-) actual
-
-# test math 1+1 == 2
-echo "1+1" | bc > actual
-diff -u <(echo "2") actual
-
-- TODO deploy should install the servlet:
   - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
   - -> 200 not 404
