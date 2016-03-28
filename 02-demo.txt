@@ -1,6 +1,5 @@
 Checklist:
 
-  - spegnere Dropbox
   - (todo) (provision) sudo apt-get install nginx -y
   - (todo) (provision) forward porta 10080 e 18080
   - (todo) fare un test per il controllo della porta 80
@@ -8,6 +7,7 @@ Checklist:
   - (note) rsync -e 'ssh -F vagrant.ssh-config' to-deploy-01/hello-world.txt default:
   - (todo) update virtualbox
   - (todo) fix Kaleidoscope
+  - spegnere Dropbox
   - CONDIVIDERE LO SCHERMO
   - fare restart della vagrant
     vagrant destroy -f && vagrant up
