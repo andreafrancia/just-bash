@@ -7,6 +7,7 @@ Checklist:
   - (note) rsync -e 'ssh -F vagrant.ssh-config' to-deploy-01/hello-world.txt default:
   - (todo) update virtualbox
   - (todo) fix Kaleidoscope
+  - (todo) provision: apt-get install curl
   - spegnere Dropbox
   - CONDIVIDERE LO SCHERMO
   - fare restart della vagrant
