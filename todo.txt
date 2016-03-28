@@ -1,3 +1,2 @@
 how to snapshot virtualbox?
-clean up virtualbox
 update virtualbox
