@@ -13,5 +13,6 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y openjdk-7-jdk
     sudo apt-get install -y tomcat7
     sudo service tomcat7 restart
+    sudo apt-get install -y nginx
   SHELL
 end
