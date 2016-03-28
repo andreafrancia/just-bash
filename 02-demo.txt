@@ -40,23 +40,22 @@ Regole:
   - prima di partire con l'implementazione spiegare il test
   - se nascono delle nuove esigenze si aggiorna la todo list
 
-Problema:
+Passi:
 
-  - il deploy script tocca la macchina (uname -a)
-  - il deploy script usa ssh puro (non vagrant ssh), lo scopo finale è avere uno script che può funzionare anche in produzione (dove c'è SSH ma non c'è Vagrant)
-  - il deploy script installa una pagina statica (hello-world.txt)
-  - il deploy script installa la pagina statica su nginx
-  - il software da installare è una classe .java
-  - la macchina target risponde in HTTP sulla sua porta 80
-  - la macchina risponde in HTTP su 8080
+  - 0) il deploy script tocca la macchina (uname -a) usando SSH
+  - 1) deploy di una pagina statica (hello-world.txt)
+  - 2) deploy di una servlet java 
+
+Requisiti aggiuntivi:
+
   - la servlet per funzionare richiede MySQL
   - la servlet che richiede il Sun di Oracle
   - per testare la servlet bisogna fare una fixture sul database
   - la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
-  - deployare una specifica versione
 
 Notes:
 
+  - diff <(curl -s http://localhost:10080/) - <<< 'Hello World'
   - Snapshot:
      - vagrant snapshot save start
      - vagrant snapshot restore start
