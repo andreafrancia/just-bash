@@ -4,6 +4,9 @@ Checklist:
   - (intro) la macchina vagrant si chiama 'default' perché 'default' è il nome di default
   - (todo) fare un test per il controllo della porta 80
   - (todo) mettere un file in /etc/nginx/conf.d/*.conf
+  - semplice (stupida)
+  - stabile
+  - matura (noiosa)
   - (note) rsync -e 'ssh -F vagrant.ssh-config' to-deploy-01/hello-world.txt default:
   - (todo) update virtualbox
   - (todo) fix Kaleidoscope
