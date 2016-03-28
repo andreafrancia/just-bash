@@ -1,2 +1,0 @@
-how to snapshot virtualbox?
-update virtualbox
