@@ -8,6 +8,7 @@ Checklist:
   - (todo) update virtualbox
   - (todo) fix Kaleidoscope
   - (todo) provision: apt-get install curl
+  - (todo) move out to-be-tested
   - spegnere Dropbox
   - CONDIVIDERE LO SCHERMO
   - fare restart della vagrant
