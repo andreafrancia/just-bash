@@ -3,7 +3,8 @@
 
 Vagrant.configure(2) do |config|
   config.vm.box = "hashicorp/precise32"
-  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 80, host: 10080
+  config.vm.network "forwarded_port", guest: 8080, host: 18080
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get -y update
     sudo apt-get install -y git
