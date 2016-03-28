@@ -1,21 +1,15 @@
-TODO:
-
-  - Snapshot:
-     - disabilitare il provisioning (scrivendo exit come prima riga)
-     - vagrant snapshot save start
-     - vagrant snapshot restore start
-  - update virtualbox
-  - fix Kaleidoscope
-
 Checklist:
 
-  - (off the record) spegnere Dropbox
-  - (on-the-net) fare restart della vagrant
+  - spegnere Dropbox
+  - (todo) update virtualbox
+  - (todo) fix Kaleidoscope
+  - CONDIVIDERE LO SCHERMO
+  - fare restart della vagrant
     vagrant destroy -f && vagrant up
-  - oppure fare il provision
-    vagrant provision
+  - oppure fare il provision: vagrant provision
+  - disabilitare il provisioning (scrivendo exit come prima riga)
   - reset
-    unalias d; unalias c; unalias t; unalias s
+    unalias d; unalias c; unalias t;
     git rm -f \
       vagrant.ssh-config \
       script/deploy
@@ -56,6 +50,9 @@ Problema:
 
 Notes:
 
+  - Snapshot:
+     - vagrant snapshot save start
+     - vagrant snapshot restore start
   - (todo) config.vm.hostname
   - sberla: source_rel() { source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$1" }
   - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
