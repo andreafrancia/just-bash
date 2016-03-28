@@ -107,6 +107,12 @@ Notes:
   - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
   - deploy della servlet:
     cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
+  - Java
+    - sudo add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" --yes 
+    - sudo apt-get update
+    - echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+    - echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+    - sudo apt-get install oracle-java7-installer --yes --force-yes # --force-yes per evitare problemi di chiave
 
 Altre note:
 
