@@ -9,44 +9,40 @@ Il punto è che uno script di deploy è veramente automatico solo se posso
 avviarlo senza pensieri ogni volta che voglio, anche una volta di seguito 
 all'altra e l'effetto dei due avvii deve essere lo stesso di un avvio solo.
 
-Non è che il primo deploy va bene, e poi al secondo si spacca tutto solo perché 
-tenta di ricreare su DB una tabella che aveva già ricreato la volta precedente.
+Non ci piace che si spacchi tutto al secondo si spacca tutto solo perché tenti
+di ricreare su DB una tabella che aveva già ricreato la volta precedente.
 
-Non è che dopo la seconda (o terza) esecuzione mi ritrovo due utenti di test 
-nel sistema, o altri duplicati delle cose che dovevano essere preparate dallo 
-script di deploy.
+Non ci piace che dopo la seconda (o la terza) esecuzione comincio a trovarmi due
+(o tre) nuovi utenti di test nel sistema che avrebbe dovuto creare (una volta)
+lo script di deploy.
 
-Non è che dopo il primo deploy automatico prima di lanciare il secondo deploy 
-automatico io debba fare dei passi manuali per preparare l'ambiente ad essere 
-modificato "automaticamente" dallo script di deploy.
+Non ci piace neanche quando dopo aver fatto il primo deploy "automatico" siamo
+costretti a fare dei passi manuali di pulizia prima di lanciare il secondo 
+deploy "automatico".
 
-A questo concetto molto pratico è stato dato lo stesso nome usato in matematica 
-per indicare quelle operazioni il cui effetto di ripetute applicazioni è lo 
-stesso di un unica applicazione: Idempotenza.
+Nonostante il nome di origine matematico-algebrica l'idempotenza è un concetto
+molto semplice e sta ad indicare la proprietà di alcuni operazioni il cui
+effetto di ripetute applicazioni è lo stesso di un unica applicazione.
 
-Alcuni degli strumenti di deploy automatico e provisioning hanno interi sistemi 
-e astrazioni per gestire l'idempotenza.
+L'idempotenza "è come lavarsi le mani, se te le lavi una volta poi sono pulite,
+se te le lavi ancora rimangono pulite e non succede niente di male". Infornare
+una torta, invece, non è idempotente, dopo la prima "applicazione" abbiamo una
+torta cotta, dopo la seconda una torta bruciata.
 
-Io credo che in realtà l'idempotenza, se spiegata bene, sia un concetto molto 
-semplice da spiegare e anche da implementare.
+Alcuni degli strumenti di deploy e provisioning automatici hanno interi sistemi
+di astrazioni per gestire l'idempotenza.
 
-L'idempotenza si spiega così: "è come lavarsi le mani".
-Se hai le mani sporche o pulite e poi vai a lavartele dopo sono pulite.
-Se te le lavi due, tre, quattro volte di seguito, poi sono sempre pulite.
-
-Invece infornare una torta per cuocerla non è un'operazione idempotente, la 
-prima volta che la cuoci la torta va bene, la seconda volta che la inforni la 
-bruci.
+A me sembra invece che si possa ottenere usando dei modi molto semplici usando
+gli strumenti già disponibili nel sistema operativo.
 
 Di seguito mostrerò come ottenere l'idempotenza negli script di deploy usando 
 gli strumenti già presenti nel sistema operativo, senza impazzire 
 con framework complessi che richiedono mille dipendenze.
 
 
-Demo
-====
+I quattro modi per ottenere l'idempotenza
+=========================================
 
-  - problema semplificato
   - analizziamo il problema nell'esecuzione di un unico semplice comando
   - una volta che abbiamo capito il problema e le soluzioni con un solo comando possiamo applicare gli stessi principi a qualsiasi script più complesso
   - Immaginiamoci che l'unica cosa che faccia il nostro sistema di deploy è la creazione di una cartella
@@ -80,6 +76,9 @@ Demo
       - a volte è la soluzione più pulita
   - 5) l'idempotenza per finta (e.g. mkdir cartella 2>/dev/null || true)
 
+Esempi
+======
+
   - Vediamo altri esempi con altri comandi:
   - "nginx --version || apt-get install nginx -y"
     - è un caso di idempotenza con sonda
@@ -100,8 +99,4 @@ Demo
     - git --help > /dev/null || sudo apt-get install git --yes
     - nginx -v || sudo apt-get install nginx --yes
 
-
-
-  
-  
 -eof
