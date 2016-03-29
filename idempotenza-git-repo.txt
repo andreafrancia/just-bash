@@ -1,0 +1,51 @@
+  - Esempio della creazione di un bare repository git:
+  - versione non idempotente:
+    OK $ mkdir repo.git && ( cd repo.git && git init --bare )
+    Initialized empty Git repository in /Users/andrea/just-bash/repo.git/
+    OK $ mkdir repo.git && ( cd repo.git && git init --bare )
+    mkdir: repo.git: File exists
+    OK $
+  - versione idempotente:
+    OK $ rm repo.git -Rf # pulizia
+    OK $ mkdir -p repo.git && ( cd repo.git && git init --bare )
+    Initialized empty Git repository in /Users/andrea/just-bash/repo.git/
+    OK $ mkdir -p repo.git && ( cd repo.git && git init --bare )
+    Reinitialized existing Git repository in /Users/andrea/just-bash/repo.git/
+    KO $
+  - Questo repository ci serve per il prossimo esercizio:
+  - Però prima facciamo in modo che contenga qualcosa:
+  - Esempio della creazione della working copy
+    - dato un repository creato con:
+      rm -Rf repo.git &&
+      mkdir repo.git &&
+      ( cd repo.git && git init -q --bare) &&
+      { rm -Rf work &&
+        git clone -q repo.git work &&
+        (cd work &&
+        touch one-file &&
+        git add one-file &&
+        git commit -q -m add one-file &&
+        git push -q ) && rm -Rf work }
+    - git -C repo.git log
+    - vogliamo clonarlo in una working copy:
+    - questa è la versione non idempotente:
+      $ git clone repo.git working-copy
+    - questa è la versione idempotente con ruspa:
+      OK $ rm -Rf working-copy && git clone -q repo.git working-copy
+      OK $ rm -Rf working-copy && git clone -q repo.git working-copy
+    - La versione idempotente con ruspa va bene ma a volte potrebbe essere troppo costosa in termini di prestazioni
+  - Questa è la versione idempotente performante
+  - Ve la faccio vedere ma non spaventatevi:
+  - mkdir -p working-copy && (
+    cd working-copy && 
+    git init && 
+    ( git remote rm origin || true ) && 
+    git remote add -f origin ../repo.git && 
+    git fetch -u origin master &&
+    git checkout master
+    )
+  - facciamo pulizia
+    OK $ rm repo.git -Rf
+    OK $ rm working-copy -Rf
+
+

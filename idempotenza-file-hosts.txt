@@ -1,0 +1,19 @@
+  - Un problema tipico dell'idempotenza é questo:
+    - "Aggiungere una riga al file /etc/hosts"
+  - Questa è la versione non idempotente:
+    - echo '127.0.0.1 local.e-commerce.com' >> /etc/hosts
+    - non è idempotente
+    - ci sarebbe da dire qualcosa riguardo ai permessi, ma eventualmente lo vediamo dopo
+  - fgrep -q '127.0.0.1 local.e-commerce.com' /etc/hosts || echo '127.0.0.1 local.e-commerce.com' >> /etc/hosts
+    - questa è la versione idempotente
+    - è idempotente per sonda
+  - se vi sembra poco leggibile si può anche definire una funzione che riduce la duplicazione:
+    add_line_just_once() {
+      local line="$1"
+      local file="$2"
+      fgrep -q "$line" "$file" || echo "$line" >> "$file"
+    }
+  - e poi si può usare:
+    add_line_just_once '127.0.0.1 local.e-commerce.com' /etc/hosts
+
+-eof
