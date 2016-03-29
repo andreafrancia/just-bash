@@ -95,5 +95,13 @@ Demo
   - Alcuni comandi sono idempotenti di natura:
   - chown -R qmaill:root /var/log/qmail
   - chmod -R 750 /var/log/qmail 
+  - Altri esempi 
+    - unzip -h > /dev/null || sudo apt-get install unzip --yes
+    - git --help > /dev/null || sudo apt-get install git --yes
+    - nginx -v || sudo apt-get install nginx --yes
 
+
+
+  
+  
 -eof
