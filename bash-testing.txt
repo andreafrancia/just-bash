@@ -1,0 +1,17 @@
+Argomenti:
+
+  * la verità in bash
+  * true
+  * false
+  * exit code
+  * convenzione SUCCESS solo quando exit code = 0 
+  * trucco del dollaro
+  * esempio ls file esistente
+  * esempio ls echo inesistente
+  * diff file1 file2
+  * diff -u file1 file2
+  * script che stampa 1 2 3 4 5
+  * diff <(comando) file2
+  * diff <(comando) - <<< stringa
+  * refactor dello script
+  * fare vedere che io uso l'unified diff
