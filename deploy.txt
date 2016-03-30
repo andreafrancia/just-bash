@@ -8,7 +8,6 @@ Checklist:
   - disabilitare il provisioning (scrivendo exit come prima riga)
   - clean up:
     script/reset && git commit -m "Clean up" -a
-    unalias d; unalias c; unalias t;
   - ricordarsi di far partire la registrazione
 
 Il problema:
