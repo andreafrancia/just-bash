@@ -1,0 +1,3 @@
+rm -fv script/deploy
+rm -fv script/test-deploy
+rm -fv vagrant.ssh-config
