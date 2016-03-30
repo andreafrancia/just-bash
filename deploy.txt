@@ -1,3 +1,10 @@
+Il problema:
+
+  - Scrivere uno script di deploy che faccia il deploy automatico di un software su un server
+  - Il server è una macchina Vagrant accessibile con "vagrant ssh"
+  - Il problema è composto da tre passi da risolvere in sequenza
+  - Ci sono tre passi per simulare un software che cambia nel tempo e quindi richiede che lo script di deploy si evolva nel tempo.
+
 Introduzione:
 
   - Il mio obiettivo per questa presentazione è condividere con il pubblico
@@ -10,12 +17,6 @@ Introduzione:
   - L'esercizio non è realistico però è comunque rappresentativo di quello che succede nella realtà.
   - Mi è sembrato il modo migliore per fare vedere il mio modo di lavorare.
 
-Il problema:
-
-  - Scrivere uno script di deploy che faccia il deploy automatico di un software su un server
-  - Il server è una macchina Vagrant accessibile con "vagrant ssh"
-  - Il problema è composto da tre passi da risolvere in sequenza
-  - Ci sono tre passi per simulare un software che cambia nel tempo e quindi richiede che lo script di deploy si evolva nel tempo.
 
 Regole:
 
