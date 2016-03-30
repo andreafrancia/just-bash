@@ -6,17 +6,10 @@ Checklist:
     vagrant destroy -f && vagrant up
   - oppure fare il provision: vagrant provision
   - disabilitare il provisioning (scrivendo exit come prima riga)
-  - reset
+  - clean up:
+    script/reset && git commit -m "Clean up" -a
     unalias d; unalias c; unalias t;
-    git rm -f \
-      vagrant.ssh-config \
-      script/deploy
-    git commit -m "Reset" -a
   - ricordarsi di far partire la registrazione
-
-TODO:
-
-  - (todo) move out to-be-tested
 
 Il problema:
 
