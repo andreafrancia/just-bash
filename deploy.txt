@@ -16,97 +16,93 @@ Il problema:
   - Alla partenza della demo la macchina *dovrebbe* essere stata già creata,
     accesa e provisionata
 
-Requisiti aggiuntivi:
+Steps:
 
-  - il deploy script tocca la macchina (uname -a) usando SSH
-  - deploy di una pagina statica (hello-world.txt)
-  - deploy di una servlet java
-  - la servlet per funzionare richiede MySQL
-  - la servlet che richiede il Sun di Oracle
-  - per testare la servlet bisogna fare una fixture sul database
-  - la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
+  - tabs per le due macchine
+  - siamo in grado di fare uno script (eseguibile)? (script/deploy)
+  - siamo in gradi di collegarci alla macchina? (vagrant ssh)
+  - to-fix 'vagrant ssh' funziona solo per le Vagrant
+  - sappiamo cosa dobbiamo deployare? (to-deploy-01/hello-world.txt)
+  - sappiamo come si copia un file su una macchina remota?
+  - sapremmo testare che la pagina è stata deployata?
+  - deploy della pagina statica 
 
-Note:
+Aiuto per l'esercizio:
 
-  - (vagrant) la macchina vagrant si chiama 'default' perché 'default' è il nome di default
   - (test) diff <(curl -s http://localhost:10080/) - <<< 'Hello World'
-  - (vagrant) Snapshot:
-     - vagrant snapshot save start
-     - vagrant snapshot restore start
-  - (todo) config.vm.hostname
-  - sberla: source_rel() { source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$1" }
-  - GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
-      git push target:/home/vagrant/repo.git master
-  - vagrant ssh-config --host target
-  - how to install git:
-    - git --version || sudo apt-get install git-core -y
   - copiare un file usando rsync over SSH:
     - rsync hello-world target:
     - rsync -e 'ssh -F vagrant.ssh-config' to-deploy-01/hello-world.txt default:
-  - how to create a bare repository:
+
+Note:
+
+  - (shell) modi per risolvere: zsh: exec format error: script/deploy
+    - mettere :
+    - mettere " "
+    - mettere true
+    - mettere #!/bin/bash
+  - (test-http) curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
+  - (esercizi) deploy di una servlet java
+  - (esercizi) la servlet per funzionare richiede MySQL
+  - (esercizi) la servlet che richiede il Sun di Oracle
+  - (esercizi) per testare la servlet bisogna fare una fixture sul database
+  - (esercizi) la configurazione di connessione al database cambia dall'ambiente di produzione a quello di produzione
+  - (vagrant) la macchina vagrant si chiama 'default' perché 'default' è il nome di default
+  - (vagrant) Snapshot:
+     - vagrant snapshot save start
+     - vagrant snapshot restore start
+  - (vagrant) data dir: - vagrant ssh -c "ls /vagrant"
+  - (vagrant-ssh) vagrant ssh-config --host target
+  - (vagrant-ssh) l'uso di SSH config
+    - vagrant ssh-config >> ~/.ssh/config
+  - (la sberla) source_rel() { source "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$1" }
+  - (prompt) Zsh prompt
+    - export PROMPT=$'%{\e[0;%(?.32.31)m%}'$'%(?.OK.KO)'" \$"$'%{\e[0m%}'" " # testing prompt
+    - export PS2="> " # simple continuation prompt
+  - (git-deploy) GIT_SSH_COMMAND="ssh -F vagrant.ssh-config" \
+      git push target:/home/vagrant/repo.git master
+  - (git-deploy) how to create a bare repository:
     - ssh target 'mkdir -p repo.git && cd repo.git && git init --bare'
-  - how to create the working copy (non idempotent)
+  - (git-deploy) how to create the working copy (non idempotent)
     - git clone repo.git/ working-copy
-  - java servlet compiling:
+  - (git-deploy) git log  --oneline --graph --color
+  - (java) java servlet compiling:
     - javac -cp lib/servlet-api.jar example/HelloWorld.java
-  - copy .class:
+  - (java) copy .class:
     - ssh target 'ls /var/lib/tomcat7/webapps/ROOT/WEB-INF/classes/HelloWorld.class'
-  - check tomcat
+  - (java) check tomcat
     - ls downloads/apache-tomcat-7.0.68.tar.gz
-  - tomcat has been downloaded from here:  
+  - (java) tomcat has been downloaded from here:  
     - wget http://it.apache.contactlab.it/tomcat/tomcat-7/v7.0.68/bin/apache-tomcat-7.0.68.tar.gz
-  - tomcat directories:
+  - (java) tomcat directories:
     - /etc/default/tomcat7 (file di configurazione)
     - /usr/share/tomcat7-admin/manager (applicazione manager)
     - /usr/share/tomcat7/lib (librerie tomcat)
     - /usr/lib/jvm/java-8-oracle
     - /var/lib/tomcat7/webapps
-  - modi per risolvere: zsh: exec format error: script/deploy
-    - mettere :
-    - mettere " "
-    - mettere true
-    - mettere #!/bin/bash
-  - Prompt
-    - barra verde/rossa nel prompt della Bash:
-      - PS1="\`if [ \$? = 0 ]; then printf \[\e[32m\]; else printf \[\e[31m\]; fi; printf \\$\e[0m\] \` $PS1"
-    - prompt semplice in Zsh:
-      - PS2="> "
-    - Zsh:
-      export PROMPT=$'%{\e[0;%(?.32.31)m%}'$'%(?.OK.KO)'" \$"$'%{\e[0m%}'" " # testing prompt
-      export PS2="> " # simple continuation prompt
-  - linea Vagrantfile per forwardare tomcat:
+  - (java) linea Vagrantfile per forwardare tomcat:
     - config.vm.network "forwarded_port", guest: 8080, host: 8080
-  - l'uso di SSH config
-    - vagrant ssh-config >> ~/.ssh/config
-  - git log  --oneline --graph --color
-  - data dir: - vagrant ssh -c "ls /vagrant"
-  - curl --silent --output /dev/null --write-out "%{http_code}"  "http://localhost:8080/"
-  - deploy della servlet:
+  - (java) deploy della servlet:
     cp /vagrant/.../HelloWorld.class /var/lib/tomcat7/webapps/ROOT
-  - Java
+  - (java) Oracle Java
     - sudo add-apt-repository "deb http://ppa.launchpad.net/webupd8team/java/ubuntu precise main" --yes 
     - sudo apt-get update
     - echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
     - echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
     - sudo apt-get install oracle-java7-installer --yes --force-yes # --force-yes per evitare problemi di chiave
-  - tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
+  - (java) tutorial http://www.tutorialspoint.com/servlets/servlets-first-example.htm
       mkdir -p /var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml
       cat >/var/lib/tomcat7/webapps/ROOT/WEB-INF/web.xml << \'
       <servlet>
          <servlet-name>HelloWorld</servlet-name>
          <servlet-class>HelloWorld</servlet-class>
       </servlet>
-
       <servlet-mapping>
          <servlet-name>HelloWorld</servlet-name>
          <url-pattern>/HelloWorld</url-pattern>
       </servlet-mapping>
       '
-  - curl --silent --output /dev/null  --write-out "%{http_code}"  "http://localhost:8080/hello-world"
-  - -> 200 not 404
-
-
-Per installare mysql senza dover mettere la password:
+   - (debconf) Per installare mysql senza dover mettere la password:
 
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password my_password'
     sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password my_password'
