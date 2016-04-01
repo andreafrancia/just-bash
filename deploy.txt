@@ -1,30 +1,3 @@
-Checklist:
-
-  - procurement:
-    - alimentatore
-    - adattatore proiettore vga
-    - adattatore proiettore hdmi
-    - puntatore
-    - batterie puntatore
-  - check della sala
-    - collegamento alimentazione
-    - presenter mode
-    - puntatore avanti e indietro
-    - fare restart della vagrant
-      vagrant destroy -f && vagrant up
-    - oppure se c'è poco tempo fare il provision: vagrant provision
-  - prima della presentazione:
-    - spegnere Dropbox
-    - spegnere le notifiche del computer
-    - mettere il telefono sul tavolo silenzioso
-  - ((( previous are DONE / next are to TODO )))
-  - on stage
-    - CONDIVIDERE LO SCHERMO
-    - disabilitare il provisioning (scrivendo exit come prima riga)
-    - clean up:
-      script/reset && git commit -m "Clean up" -a
-    - ricordarsi di far partire la registrazione
-
 Il problema:
 
   - Facciamo uno script di deploy che installa un software su un server
@@ -144,3 +117,4 @@ Per sapere le selections:
     sudo apt-get install -y debconf-utils
     debconf-get-selections
 
+-eof
