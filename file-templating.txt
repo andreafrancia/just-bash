@@ -1,0 +1,8 @@
+ - touch per creare i file
+ - echo per creare file di una riga sola
+ - echo per creare un file di tante linee
+ - echo per fare templating
+ - e se il file lo può modificare solo root
+ - combinare vari pezzi
+ - aggiungere una riga ad un file
+ - aggiungere una riga ad un file in modo idempotente
