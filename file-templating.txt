@@ -1,3 +1,18 @@
+ - Problema
+ - Altre soluzioni
+ - Perché la mia soluzione è utile per voi 
+
+ - Problema di esempio:
+   - fare uno script che crea la configurazione di Apache
+   - La configurazione è una cosa del tipo:
+
+      DocumentRoot "/var/company-www"
+      <Directory "/var/company-www">
+	  AllowOverride None
+	  Require all granted
+      </Directory>
+   - 
+   
  - touch per creare i file
  - echo per creare file di una riga sola
  - echo per creare un file di tante linee
