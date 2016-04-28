@@ -1,1 +1,6 @@
-script/ciao-tutto > expected-output-del-comando-ciao-tutto
+diff <(script/ciao-tutto) - << EOF
+hello 1
+hello 2
+hello 3
+hello 4
+EOF
