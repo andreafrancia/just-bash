@@ -1,1 +1,1 @@
-script/ciao-tutto
+script/ciao-tutto > output-del-comando.txt
