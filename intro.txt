@@ -1,0 +1,10 @@
+Punti da spiegare:
+
+  - perché ci interessa il deploy
+  - perché ci interessa automatico
+  - qual'è la differenza tra deploy e provision
+  - quali sono le cose che dobbiamo sapere per poter fare deploy efficace?
+  - testing automatico, cosa succederebbe se non fossimo in grado di farlo?
+  - idempotenza, cosa succederebbe se non fossimo in grado di ottenerla?
+  - legge di conway
+  - come imparare
