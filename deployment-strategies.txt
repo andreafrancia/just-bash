@@ -1,0 +1,23 @@
+  - in questo modulo usiamo la parola 'deploy' nella sua accezione più stretta cioè la copia dei file dell'applicazione sulla macchina di destinazione
+  - quali sono i modi usati per il deploy solitamente
+  - il più scarso è usare FileZilla
+  - il deploy è poco più di un copia e incolla dei file dal computer dello sviluppatore al server
+  - è un sistema che va benissimo, però ha alcuni problemini:
+  - la cosa più brutta è che richiede l'uso della GUI ed è difficilmente invocabile da shell
+  - un passo leggermente più avanzato è l'uso di FTP da linea di comando
+  - usando con lftp è possibile scrivere uno script automatico
+  - il difetto di lftp è, per esempio, che usa lftp, un'altro servizio (oltre a SSH), la scomodità è nel dover mantenere sulla macchina target un ulteriore servizio
+  - Una soluzione migliore è usare scp, scp è una specie di ftp in realtà sarebbe un rcp over ssh invece che
+  - il problema di scp è che non è ottimizzato per copie ripetute, tutte le volte viene copiato l'intero albero ad ogni copia
+  - il passo successivo è usare rsync
+  - rsync - a fast, versatile, remote (and local) file-copying tool
+  - è stato sviluppato dagli sviluppatori di Samba
+  - rsync funziona così
+  - rsync ./src target:/path/to/dest
+  - per le moderne versioni di rsync nella sua configurazione di default viaggia over SSH
+  - vuol dire che il problema della password è già stato risolto dai comandi di prima.
+  - cosa c'è dopo rsync?
+  - una cosa che non vi immaginereste mai
+  - il problema non risolto da tutti questi sistemi è il "roundtrip deploy", cioè la possibilità di portare il software dalla produzione all'ambiente di sviluppo.
+  - quello che siamo riusciti a fare con ognuno di questi sistemi è di traferire i file dall'ambiente di sviluppo all'ambiente di produzione, però non è sempre vero che tutto lo sviluppo si fa in questa direzione
+  - inoltre non c'è ancora nessun modo per verificare quale versione c'è esattamente in produzione, l'unico modo è segnarsi da qualche parte l'ultimo deploy
