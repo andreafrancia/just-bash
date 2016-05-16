@@ -1,3 +1,4 @@
+  - Deploy
   - in questo modulo usiamo la parola 'deploy' nella sua accezione più stretta cioè la copia dei file dell'applicazione sulla macchina di destinazione
   - quali sono i modi usati per il deploy solitamente
   - il più scarso è usare FileZilla
