@@ -17,7 +17,6 @@ Checklist:
     - spegnere Dropbox
     - spegnere le notifiche del computer
     - mettere il telefono sul tavolo silenzioso
-  - ((( previous are DONE / next are to TODO )))
   - on stage
     - CONDIVIDERE LO SCHERMO
     - disabilitare il provisioning (scrivendo exit come prima riga)
