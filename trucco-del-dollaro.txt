@@ -1,0 +1,28 @@
+Come fare a sapere se abbiamo avuto successo?
+
+  * In bash è già presente il concetto che sta alla base del testing e cioè un meccanismo di segnalazione dell'esito di un comando
+  * Infatti ogni volta che lanci un comando hai sempre accesso all'informazione sul fatto che quel comando sia andato bene o male
+  * Per esempio. Cosa succede se eseguo questo comando:
+  	ls existing-file.txt
+  * E cosa succede quando invece c'è un problema?
+  	ls non-existing-file.txt
+  * Come posso capire se ci sono stati prolemi o meno?
+  * In Unix esite il concetto di "Exit status"
+
+  $ man ls | col -b | grep 'Exit status:' -A6
+     Exit status:
+         0      if OK,
+         1      if minor problems (e.g., cannot access subdirectory),
+         2      if serious trouble (e.g., cannot access command-line  argument).
+
+  * Come si può vedere questo exit code?
+
+  $ ls existing-file.txt 
+  $ echo $? 
+  
+  * Qual'è il problema di questa soluzione?
+  * Come si installa il trucco del dollaro?
+  
+  source script/trucco-del-dollaro.bash
+
+-eof
