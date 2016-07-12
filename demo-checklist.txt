@@ -1,5 +1,8 @@
 Checklist:
 
+  - check-up a casa:
+    - fare restart della vagrant
+      vagrant destroy -f && vagrant up
   - procurement:
     - alimentatore
     - adattatore proiettore vga
@@ -10,9 +13,8 @@ Checklist:
     - collegamento alimentazione
     - presenter mode
     - puntatore avanti e indietro
-    - fare restart della vagrant
-      vagrant destroy -f && vagrant up
-    - oppure se c'è poco tempo fare il provision: vagrant provision
+    - fare:
+       vagrant up && vagrant provision
   - prima della presentazione:
     - spegnere Dropbox
     - spegnere le notifiche del computer
